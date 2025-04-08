@@ -1,21 +1,32 @@
-name: Jest unit-tests
-on: pull_request
+name: Run Jest Tests
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      - name: Use default Node.js version
-        uses: actions/setup-node@v3 
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '22'
 
-      - name: Install yarn dependencies
-        run: |
-          cd ${GITHUB_WORKSPACE}/app && yarn --frozen-lockfile
-        
-      - name: Running tests
-        run: |
-          cd ${GITHUB_WORKSPACE}/app && yarn test
+    - name: Install dependencies
+      run: yarn install
+
+    - name: Run Jest tests
+      run: yarn test
+      env:
+        CI: true  # This ensures Jest runs in CI mode
