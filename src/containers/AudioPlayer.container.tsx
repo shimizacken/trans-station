@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { AudioPlayer } from "../components/AudioPlayer.view";
+import { stations } from "../constants/radioStations";
 
 export const AudioPlayerContainer: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -18,10 +19,7 @@ export const AudioPlayerContainer: React.FC = () => {
 
   return (
     <div>
-      <AudioPlayer
-        ref={audioRef}
-        streamUrl="https://kanliveicy.media.kan.org.il/icy/kanbet_mp3"
-      />
+      <AudioPlayer ref={audioRef} streamUrl={stations[0].streamUrl} />
       <div>
         <button onClick={handlePlayPause}>
           {isPlaying ? "Pause" : "Play"} Reshet Bet
