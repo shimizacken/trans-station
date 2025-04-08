@@ -5,9 +5,7 @@ interface AudioPlayerProps {
   preload?: "auto" | "metadata" | "none";
 }
 
-type HTMLAudioRefType = HTMLAudioElement | null;
-
-export const AudioPlayer = forwardRef<HTMLAudioRefType, AudioPlayerProps>(
+export const AudioPlayer = forwardRef<HTMLAudioElement, AudioPlayerProps>(
   ({ streamUrl, preload = "auto" }, ref) => (
     <audio ref={ref} src={streamUrl} preload={preload} />
   )
