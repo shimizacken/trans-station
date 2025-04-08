@@ -2,6 +2,12 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  padding: 2rem;
+}
+
 main {
   margin: 0 auto;
   padding: 2rem;
@@ -35,5 +41,9 @@ button {
   &:focus {
     outline: none;
     box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
+  }
+
+  &.playing {
+    background-color: #28a745;
   }
 }
