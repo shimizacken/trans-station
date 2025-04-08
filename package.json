@@ -1,0 +1,20 @@
+{
+  "scripts": {
+    "start": "parcel src/index.html --open -p 3050",
+    "build": "parcel build src/index.html",
+    "test": "jest --watchAll --passWithNoTests"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "2.14.4",
+    "@types/jest": "^29.5.14",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.1",
+    "jest": "^29.7.0",
+    "parcel": "^2.14.4"
+  }
+}
