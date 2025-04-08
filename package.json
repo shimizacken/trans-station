@@ -1,7 +1,8 @@
 {
   "scripts": {
     "start": "parcel src/index.html --open -p 3050",
-    "build": "parcel build index.html"
+    "build": "parcel build index.html",
+    "test": "jest --watchAll --passWithNoTests"
   },
   "dependencies": {
     "react": "^19.1.0",
