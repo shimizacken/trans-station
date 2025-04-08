@@ -24,7 +24,7 @@ export const AudioPlayerContainer: React.FC = () => {
       />
       <div>
         <button onClick={handlePlayPause}>
-          {isPlaying ? "Pause" : "Play"} Radio
+          {isPlaying ? "Pause" : "Play"} Reshet Bet
         </button>
       </div>
     </div>
