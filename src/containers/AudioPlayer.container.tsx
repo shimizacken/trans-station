@@ -21,7 +21,10 @@ export const AudioPlayerContainer: React.FC = () => {
     <div>
       <AudioPlayer ref={audioRef} streamUrl={stations[0].streamUrl} />
       <div>
-        <button onClick={handlePlayPause}>
+        <button
+          onClick={handlePlayPause}
+          className={isPlaying ? "playing" : ""}
+        >
           {isPlaying ? "Pause" : "Play"} Reshet Bet
         </button>
       </div>
