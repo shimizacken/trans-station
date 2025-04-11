@@ -1,13 +1,29 @@
 import { useEffect, useState } from 'react';
 
 const mediaElementEvents = [
-  'loadstart',
+  'abort',
   'canplay',
+  'canplaythrough',
+  'durationchange',
+  'emptied',
+  'ended',
+  'error',
+  'loadeddata',
+  'loadedmetadata',
+  'loadstart',
   'pause',
   'play',
   'playing',
+  'progress',
+  'ratechange',
+  'resize',
+  'seeked',
+  'seeking',
   'stalled',
-  'error',
+  'suspend',
+  'timeupdate',
+  'volumechange',
+  'waiting',
 ] as const;
 
 export const useAudioPlayer = (audioRef: React.RefObject<HTMLAudioElement | null>) => {
