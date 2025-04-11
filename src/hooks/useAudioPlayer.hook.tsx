@@ -1,5 +1,15 @@
 import { useEffect, useState } from 'react';
 
+const mediaElementEvents = [
+  'loadstart',
+  'canplay',
+  'pause',
+  'play',
+  'playing',
+  'stalled',
+  'error',
+] as const;
+
 export const useAudioPlayer = (audioRef: React.RefObject<HTMLAudioElement | null>) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -52,22 +62,30 @@ export const useAudioPlayer = (audioRef: React.RefObject<HTMLAudioElement | null
       console.error('Stream error');
     };
 
-    audio?.addEventListener('loadstart', handleLoadStart);
-    audio?.addEventListener('canplay', handleCanPlay);
-    audio?.addEventListener('pause', handlePause);
-    audio?.addEventListener('play', handlePlay);
-    audio?.addEventListener('playing', handlePlaying);
-    audio?.addEventListener('stalled', handleStalled);
-    audio?.addEventListener('error', handleError);
+    const events = {
+      loadstart: handleLoadStart,
+      canplay: handleCanPlay,
+      pause: handlePause,
+      play: handlePlay,
+      playing: handlePlaying,
+      stalled: handleStalled,
+      error: handleError,
+    };
+
+    const handleMediaElementEvent = (event: Event) => {
+      events[event.type as keyof typeof events]?.();
+      console.log(`Event: ${event.type}`);
+      console.log('Current time:', audio?.currentTime);
+    };
+
+    mediaElementEvents.forEach((eventName) => {
+      audio?.addEventListener(eventName, handleMediaElementEvent);
+    });
 
     return () => {
-      audio?.removeEventListener('loadstart', handleLoadStart);
-      audio?.removeEventListener('canplay', handleCanPlay);
-      audio?.removeEventListener('pause', handlePause);
-      audio?.removeEventListener('play', handlePlay);
-      audio?.removeEventListener('playing', handlePlaying);
-      audio?.removeEventListener('stalled', handleStalled);
-      audio?.removeEventListener('error', handleError);
+      mediaElementEvents.forEach((eventName) => {
+        audio?.removeEventListener(eventName, handleMediaElementEvent);
+      });
     };
   }, []);
 
