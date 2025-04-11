@@ -1,65 +1,21 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { AudioPlayer } from '../components/AudioPlayer.view';
 import { stations } from '../constants/radioStations';
 import { useSpaceKey } from '../hooks/useSpaceKey.hook';
+import { useAudioPlayer } from '../hooks/useAudioPlayer.hook';
 
+/*
+ * AudioPlayerContainer
+ * This component manages the audio player and handles play/pause functionality.
+ * It uses a custom hook to manage the audio player's state and events.
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play_event
+ *
+ * @returns {JSX.Element} The rendered AudioPlayerContainer component.
+ */
 export const AudioPlayerContainer: React.FC = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  useEffect(() => {
-    const audio = audioRef.current;
-
-    const handleLoadStart = () => {
-      setLoading(true);
-      setError(false);
-      console.log('Loading started...');
-    };
-
-    const handleCanPlay = () => {
-      setLoading(false);
-      console.log('Can play');
-    };
-
-    const handlePlaying = () => {
-      setLoading(false);
-      console.log('Now playing');
-    };
-
-    const handlePause = () => {
-      setLoading(false);
-      console.log('Paused');
-    };
-
-    const handleStalled = () => {
-      setLoading(true);
-      console.log('Stalled – likely buffering');
-    };
-
-    const handleError = () => {
-      setError(true);
-      setLoading(false);
-      console.error('Stream error');
-    };
-
-    audio?.addEventListener('loadstart', handleLoadStart);
-    audio?.addEventListener('canplay', handleCanPlay);
-    audio?.addEventListener('playing', handlePlaying);
-    audio?.addEventListener('pause', handlePause);
-    audio?.addEventListener('stalled', handleStalled);
-    audio?.addEventListener('error', handleError);
-
-    return () => {
-      audio?.removeEventListener('loadstart', handleLoadStart);
-      audio?.removeEventListener('canplay', handleCanPlay);
-      audio?.removeEventListener('playing', handlePlaying);
-      audio?.removeEventListener('pause', handlePause);
-      audio?.removeEventListener('stalled', handleStalled);
-      audio?.removeEventListener('error', handleError);
-    };
-  }, []);
+  const { isPlaying, loading, error } = useAudioPlayer(audioRef);
 
   const handlePlayPause = () => {
     if (audioRef.current) {
@@ -69,7 +25,6 @@ export const AudioPlayerContainer: React.FC = () => {
         audioRef.current.load();
         audioRef.current.play();
       }
-      setIsPlaying(!isPlaying);
     }
   };
 
