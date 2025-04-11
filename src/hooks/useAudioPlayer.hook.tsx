@@ -21,7 +21,7 @@ const mediaElementEvents = [
   'seeking',
   'stalled',
   'suspend',
-  'timeupdate',
+  // 'timeupdate',
   'volumechange',
   'waiting',
 ] as const;
@@ -90,8 +90,7 @@ export const useAudioPlayer = (audioRef: React.RefObject<HTMLAudioElement | null
 
     const handleMediaElementEvent = (event: Event) => {
       events[event.type as keyof typeof events]?.();
-      console.log(`Event: ${event.type}`);
-      console.log('Current time:', audio?.currentTime);
+      console.log(`Event: ${event.type}, Current time: ${audio?.currentTime}`);
     };
 
     mediaElementEvents.forEach((eventName) => {
