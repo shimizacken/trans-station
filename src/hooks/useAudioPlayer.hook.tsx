@@ -91,7 +91,6 @@ export const useAudioPlayer = (audioRef: React.RefObject<HTMLAudioElement | null
 
     const handleMediaElementEvent = (event: Event) => {
       events[event.type as keyof typeof events]?.();
-      console.log(`${event.type}, Current time: ${Math.round(audio?.currentTime ?? 0)} sec`);
       mediaElementEventsNeutron.emit({
         id: crypto.randomUUID(),
         timestamp: new Date(),

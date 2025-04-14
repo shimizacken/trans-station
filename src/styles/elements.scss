@@ -20,10 +20,14 @@
   border-radius: 8px;
   width: 100%;
   padding: 1rem;
-  overflow-y: auto;
   max-height: 20vh;
   line-height: 1.5rem;
   font-size: 0.5rem;
+
+  .log-list {
+    overflow-y: auto;
+    width: inherit;
+  }
 
   .log-item {
     font-size: 0.9rem;
