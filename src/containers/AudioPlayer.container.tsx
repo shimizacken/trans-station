@@ -4,7 +4,7 @@ import { stations } from '../constants/radioStations';
 import { useSpaceKey } from '../hooks/useSpaceKey.hook';
 import { useAudioPlayer } from '../hooks/useAudioPlayer.hook';
 import { PlayRadioButton } from '../components/PlayRadioButton.view';
-import { VolumeSlider } from '../components/VolumeSlider.view';
+import { VolumeSliderContainer } from './VolumeSlider.container';
 
 /*
  * AudioPlayerContainer
@@ -17,7 +17,7 @@ import { VolumeSlider } from '../components/VolumeSlider.view';
 export const AudioPlayerContainer: React.FC = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  const { isPlaying, loading, error } = useAudioPlayer(audioRef);
+  const { isPlaying, isLoading } = useAudioPlayer(audioRef);
 
   const handlePlayPause = () => {
     if (audioRef.current) {
@@ -34,12 +34,10 @@ export const AudioPlayerContainer: React.FC = () => {
 
   return (
     <div>
-      <AudioPlayer ref={audioRef} streamUrl={stations[0].streamUrl} />
-      <VolumeSlider ref={audioRef} />
-      {loading && <p>🔄 Loading stream…</p>}
-      {error && <p>❌ Error loading stream</p>}
-      <div>
-        <PlayRadioButton onClick={handlePlayPause} isPlaying={isPlaying} />
+      <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'row' }}>
+        <VolumeSliderContainer ref={audioRef} />
+        <AudioPlayer ref={audioRef} streamUrl={stations[0].streamUrl} />
+        <PlayRadioButton onClick={handlePlayPause} isPlaying={isPlaying} isLoading={isLoading} />
       </div>
     </div>
   );
