@@ -1,5 +1,5 @@
 import React, { useState, forwardRef } from 'react';
-import { VolumeSlider } from '../components/VolumeSlider.view';
+import { Silver } from 'react-dial-knob';
 
 type RadioWithVolumeProps = {
   className?: string;
@@ -7,12 +7,10 @@ type RadioWithVolumeProps = {
 
 export const VolumeSliderContainer = forwardRef<HTMLAudioElement, RadioWithVolumeProps>(
   ({ className }, audioRef) => {
-    const [volume, setVolume] = useState(0.7);
+    const [volume, setVolume] = useState(0);
 
-    const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const newVolume = parseFloat(e.target.value) / 100;
-      console.log('🚀 ~ handleVolumeChange ~ newVolume:', newVolume);
-
+    const handleVolumeChange = (value: number) => {
+      const newVolume = value / 100;
       setVolume(newVolume);
 
       if (audioRef && 'current' in audioRef && audioRef.current) {
@@ -20,6 +18,15 @@ export const VolumeSliderContainer = forwardRef<HTMLAudioElement, RadioWithVolum
       }
     };
 
-    return <VolumeSlider volume={volume} handleVolumeChange={handleVolumeChange} />;
+    return (
+      <Silver
+        diameter={250}
+        min={0}
+        max={100}
+        step={10}
+        value={volume * 100}
+        onValueChange={handleVolumeChange}
+      />
+    );
   }
 );

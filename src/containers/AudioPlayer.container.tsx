@@ -34,7 +34,7 @@ export const AudioPlayerContainer: React.FC = () => {
 
   return (
     <div>
-      <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'row' }}>
+      <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
         <VolumeSliderContainer ref={audioRef} />
         <AudioPlayer ref={audioRef} streamUrl={stations[0].streamUrl} />
         <PlayRadioButton onClick={handlePlayPause} isPlaying={isPlaying} isLoading={isLoading} />
