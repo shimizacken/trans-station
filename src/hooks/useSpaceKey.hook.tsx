@@ -9,7 +9,6 @@ export const useSpaceKey = (onPress: () => void) => {
         event.preventDefault();
 
         setIsSpacePressed((prev) => !prev);
-        console.log('🚀 ~ handleSpaceKeyDown ~ setIsSpacePressed:');
         onPress();
       }
     };
