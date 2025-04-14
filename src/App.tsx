@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '../src/styles/global.scss';
+import '../src/styles/index.scss';
 
 import { StationPage } from './pages/Station.page';
 

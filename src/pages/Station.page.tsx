@@ -3,6 +3,7 @@ import { Footer } from '../components/Footer.view';
 import { Header } from '../components/Header.view';
 import { AudioPlayerContainer } from '../containers/AudioPlayer.container';
 import { LoggerContainer } from '../components/Logger.container';
+import { Stack } from '../components/Stack.view';
 
 export const StationPage: React.FC = () => {
   return (
@@ -10,9 +11,11 @@ export const StationPage: React.FC = () => {
       <Header />
       <main>
         <AudioPlayerContainer />
-        <LoggerContainer />
       </main>
-      <Footer />
+      <Stack>
+        <LoggerContainer />
+        <Footer />
+      </Stack>
     </>
   );
 };

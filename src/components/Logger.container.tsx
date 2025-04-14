@@ -35,7 +35,7 @@ export const LoggerContainer: React.FC = () => {
   }, []);
 
   return (
-    <div style={{ marginTop: '20px' }}>
+    <div>
       <Logger ref={loggerMessages} logs={logs} />
     </div>
   );

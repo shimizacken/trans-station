@@ -39,44 +39,37 @@ export const useAudioPlayer = (audioRef: React.RefObject<HTMLAudioElement | null
       setLoading(true);
       setError(false);
       setIsPlaying(false);
-      console.log('Loading started...');
     };
 
     const handleCanPlay = () => {
       setLoading(false);
       setIsPlaying(false);
-      console.log('Can play');
     };
 
     const handlePlay = () => {
       setLoading(false);
       setIsPlaying(false);
-      console.log('Play');
     };
 
     const handlePlaying = () => {
       setLoading(false);
       setIsPlaying(true);
-      console.log('Now playing');
     };
 
     const handlePause = () => {
       setLoading(false);
       setIsPlaying(false);
-      console.log('Paused');
     };
 
     const handleStalled = () => {
       setLoading(true);
       setIsPlaying(false);
-      console.log('Stalled – likely buffering');
     };
 
     const handleError = () => {
       setError(true);
       setLoading(false);
       setIsPlaying(false);
-      console.error('Stream error');
     };
 
     const events = {
