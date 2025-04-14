@@ -6,8 +6,8 @@ export const LoggerContainer: React.FC = () => {
   const logs: Logs = [];
 
   return (
-    <p>
+    <div style={{ marginTop: '20px' }}>
       <Logger logs={logs} />
-    </p>
+    </div>
   );
 };

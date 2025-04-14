@@ -90,7 +90,7 @@ export const useAudioPlayer = (audioRef: React.RefObject<HTMLAudioElement | null
 
     const handleMediaElementEvent = (event: Event) => {
       events[event.type as keyof typeof events]?.();
-      console.log(`Event: ${event.type}, Current time: ${audio?.currentTime}`);
+      console.log(`${event.type}, Current time: ${Math.round(audio?.currentTime ?? 0)} sec`);
     };
 
     mediaElementEvents.forEach((eventName) => {
