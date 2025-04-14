@@ -29,46 +29,46 @@ const mediaElementEvents = [
 
 export const useAudioPlayer = (audioRef: React.RefObject<HTMLAudioElement | null>) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     const audio = audioRef.current;
 
     const handleLoadStart = () => {
-      setLoading(true);
-      setError(false);
+      setIsLoading(true);
+      setIsError(false);
       setIsPlaying(false);
     };
 
     const handleCanPlay = () => {
-      setLoading(false);
+      setIsLoading(false);
       setIsPlaying(false);
     };
 
     const handlePlay = () => {
-      setLoading(false);
+      setIsLoading(false);
       setIsPlaying(false);
     };
 
     const handlePlaying = () => {
-      setLoading(false);
+      setIsLoading(false);
       setIsPlaying(true);
     };
 
     const handlePause = () => {
-      setLoading(false);
+      setIsLoading(false);
       setIsPlaying(false);
     };
 
     const handleStalled = () => {
-      setLoading(true);
+      setIsLoading(true);
       setIsPlaying(false);
     };
 
     const handleError = () => {
-      setError(true);
-      setLoading(false);
+      setIsError(true);
+      setIsLoading(false);
       setIsPlaying(false);
     };
 
@@ -105,7 +105,7 @@ export const useAudioPlayer = (audioRef: React.RefObject<HTMLAudioElement | null
 
   return {
     isPlaying,
-    loading,
-    error,
+    isLoading,
+    isError,
   };
 };

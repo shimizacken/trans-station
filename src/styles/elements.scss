@@ -1,3 +1,9 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .footer {
   height: fit-content;
   border-top: 1px solid #595959;
@@ -61,4 +67,8 @@
   &.playing {
     background-color: #28a745;
   }
+}
+
+input[type='range'] {
+  transform: rotate(-90deg);
 }
