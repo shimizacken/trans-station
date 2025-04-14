@@ -4,6 +4,7 @@ import { stations } from '../constants/radioStations';
 import { useSpaceKey } from '../hooks/useSpaceKey.hook';
 import { useAudioPlayer } from '../hooks/useAudioPlayer.hook';
 import { PlayRadioButton } from '../components/PlayRadioButton.view';
+import { VolumeSlider } from '../components/VolumeSlider.view';
 
 /*
  * AudioPlayerContainer
@@ -34,6 +35,7 @@ export const AudioPlayerContainer: React.FC = () => {
   return (
     <div>
       <AudioPlayer ref={audioRef} streamUrl={stations[0].streamUrl} />
+      <VolumeSlider ref={audioRef} />
       {loading && <p>🔄 Loading stream…</p>}
       {error && <p>❌ Error loading stream</p>}
       <div>
