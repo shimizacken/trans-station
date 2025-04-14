@@ -3,6 +3,7 @@ import { AudioPlayer } from '../components/AudioPlayer.view';
 import { stations } from '../constants/radioStations';
 import { useSpaceKey } from '../hooks/useSpaceKey.hook';
 import { useAudioPlayer } from '../hooks/useAudioPlayer.hook';
+import { PlayRadioButton } from '../components/PlayRadioButton.view';
 
 /*
  * AudioPlayerContainer
@@ -36,9 +37,7 @@ export const AudioPlayerContainer: React.FC = () => {
       {loading && <p>🔄 Loading stream…</p>}
       {error && <p>❌ Error loading stream</p>}
       <div>
-        <button onClick={handlePlayPause} className={isPlaying ? 'playing' : ''}>
-          {isPlaying ? 'Pause' : 'Play'} Reshet Bet
-        </button>
+        <PlayRadioButton onClick={handlePlayPause} isPlaying={isPlaying} />
       </div>
     </div>
   );
