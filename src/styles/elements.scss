@@ -1,0 +1,14 @@
+.footer {
+  position: fixed;
+  height: fit-content;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-top: 1px solid #595959;
+
+  .footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
