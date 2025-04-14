@@ -20,7 +20,7 @@ export const VolumeSliderContainer = forwardRef<HTMLAudioElement, RadioWithVolum
 
     return (
       <Silver
-        diameter={250}
+        diameter={180}
         min={0}
         max={100}
         step={10}

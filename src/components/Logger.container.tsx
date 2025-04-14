@@ -35,7 +35,7 @@ export const LoggerContainer: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
       <Logger ref={loggerMessages} logs={logs} />
     </div>
   );

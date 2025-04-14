@@ -13,6 +13,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 0.8rem;
   }
 }
 
@@ -30,9 +31,10 @@
   justify-content: flex-start;
   border: 1px solid #595959;
   border-radius: 8px;
-  padding: 1rem;
-  max-height: 20vh;
-  line-height: 1.5rem;
+  padding: 0.8rem;
+  max-height: 10vh;
+  line-height: 1.2rem;
+  width: 88%;
 
   .log-list {
     overflow-y: auto;
@@ -40,7 +42,7 @@
   }
 
   .log-item {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
 }
 
