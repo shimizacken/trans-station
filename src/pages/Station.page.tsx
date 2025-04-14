@@ -2,7 +2,7 @@ import React from 'react';
 import { Footer } from '../components/Footer.view';
 import { Header } from '../components/Header.view';
 import { AudioPlayerContainer } from '../containers/AudioPlayer.container';
-import { Logger } from '../components/Logger.view';
+import { LoggerContainer } from '../components/Logger.container';
 
 export const StationPage: React.FC = () => {
   return (
@@ -10,7 +10,7 @@ export const StationPage: React.FC = () => {
       <Header />
       <main>
         <AudioPlayerContainer />
-        <Logger />
+        <LoggerContainer />
       </main>
       <Footer />
     </>
