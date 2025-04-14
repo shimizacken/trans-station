@@ -1,15 +1,12 @@
 import React from 'react';
+import { Logs } from '../types/logs.types';
 
-export const Logger: React.FC = () => {
-  return (
-    <div className="logger">
-      <div className="log-list">
-        <div className="log-item">Event: loadstart</div>
-        <div className="log-item">Event: durationchange</div>
-        <div className="log-item">Event: loadedmetadata</div>
-        <div className="log-item">Event: loadeddata</div>
-        <div className="log-item">Can play</div>
-      </div>
+export const Logger: React.FC<{ logs: Logs }> = ({ logs }) => (
+  <div className="logger">
+    <div className="log-list">
+      {logs.map((log) => (
+        <div key={log.id} className="log-item" />
+      ))}
     </div>
-  );
-};
+  </div>
+);

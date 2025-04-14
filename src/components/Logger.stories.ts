@@ -10,10 +10,6 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-  argTypes: {
-    backgroundColor: { control: 'color' },
-  },
-  args: { onClick: fn() },
 } satisfies Meta<typeof Logger>;
 
 export default meta;
@@ -21,7 +17,13 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    primary: true,
-    label: 'Logger',
+    logs: [
+      {
+        id: '1',
+        timestamp: new Date(),
+        level: 'info',
+        message: 'This is an info message',
+      },
+    ],
   },
 };
