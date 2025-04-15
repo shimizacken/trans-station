@@ -33,6 +33,10 @@ export const useAudioPlayer = (audioRef: React.RefObject<HTMLAudioElement | null
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
+    console.log('online?', navigator.onLine);
+  }, [navigator.onLine]);
+
+  useEffect(() => {
     const audio = audioRef.current;
 
     const handleLoadStart = () => {
@@ -66,6 +70,12 @@ export const useAudioPlayer = (audioRef: React.RefObject<HTMLAudioElement | null
       setIsPlaying(false);
     };
 
+    const handleOffline = () => {
+      setIsLoading(true);
+      setIsPlaying(false);
+      console.log('🚀 ~ handleOffline ~ setIsPlaying');
+    };
+
     const handleError = () => {
       setIsError(true);
       setIsLoading(false);
@@ -96,10 +106,20 @@ export const useAudioPlayer = (audioRef: React.RefObject<HTMLAudioElement | null
       audio?.addEventListener(eventName, handleMediaElementEvent);
     });
 
+    window.addEventListener('online', (event) => {
+      console.log('You are now connected to the network.');
+    });
+
+    window.addEventListener('offline', (event) => {
+      console.log('The network connection has been lost.');
+    });
+
     return () => {
       mediaElementEvents.forEach((eventName) => {
         audio?.removeEventListener(eventName, handleMediaElementEvent);
       });
+
+      window.removeEventListener('offline', handleOffline);
     };
   }, []);
 
