@@ -14,7 +14,7 @@ export type Station = {
   genre: string;
   country: string;
   userPreferences?: StationUserPreferences;
-  status: MediaElementStatus;
+  status?: MediaElementStatus;
 };
 
 export type Stations = Station[];

@@ -13,4 +13,16 @@ export const stations: Stations = [
       favorite: true,
     },
   },
+  {
+    id: '2',
+    name: 'Galgalatz',
+    streamUrl: 'https://glzwizzlv.bynetcdn.com/glglz_mp3?',
+    logoUrl: 'src/images/logos/galgalatz.png',
+    description: 'Galgalatz is an Israeli radio station that plays music and news.',
+    genre: 'Music',
+    country: 'Israel',
+    userPreferences: {
+      favorite: false,
+    },
+  },
 ];
