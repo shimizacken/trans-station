@@ -1,5 +1,6 @@
 import React, { useState, forwardRef, useEffect } from 'react';
 import { Silver } from 'react-dial-knob';
+import { mediaElementEventsNeutron } from '../signals/mediaElementEvents.signal';
 
 type RadioWithVolumeProps = {
   className?: string;
@@ -20,6 +21,13 @@ export const VolumeSliderContainer = forwardRef<HTMLAudioElement, RadioWithVolum
       setVolume(newVolume);
 
       setActualVolume(audioRef, volume);
+
+      mediaElementEventsNeutron.emit({
+        id: crypto.randomUUID(),
+        timestamp: new Date(),
+        level: 'info',
+        message: `🚀 ~ volume changed ${volume * 100}`,
+      });
     };
 
     useEffect(() => {
