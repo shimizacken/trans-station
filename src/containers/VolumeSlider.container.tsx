@@ -9,6 +9,12 @@ type RadioWithVolumeProps = {
 const setActualVolume = (audioRef: React.ForwardedRef<HTMLAudioElement>, volume: number) => {
   if (audioRef && 'current' in audioRef && audioRef.current) {
     audioRef.current.volume = volume;
+    mediaElementEventsNeutron.emit({
+      id: crypto.randomUUID(),
+      timestamp: new Date(),
+      level: 'info',
+      message: `🚀 ~ audioRef.current.volume ${audioRef.current.volume}`,
+    });
   }
 };
 
@@ -21,13 +27,6 @@ export const VolumeSliderContainer = forwardRef<HTMLAudioElement, RadioWithVolum
       setVolume(newVolume);
 
       setActualVolume(audioRef, volume);
-
-      mediaElementEventsNeutron.emit({
-        id: crypto.randomUUID(),
-        timestamp: new Date(),
-        level: 'info',
-        message: `🚀 ~ volume changed ${volume * 100}`,
-      });
     };
 
     useEffect(() => {
