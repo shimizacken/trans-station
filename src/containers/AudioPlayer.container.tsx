@@ -16,7 +16,6 @@ import { VolumeSliderContainer } from './VolumeSlider.container';
  */
 export const AudioPlayerContainer: React.FC = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
-
   const { isPlaying, isLoading } = useAudioPlayer(audioRef);
 
   const handlePlayPause = () => {
