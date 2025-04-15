@@ -2,6 +2,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  .header-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
 }
 
 .footer {
@@ -49,18 +58,23 @@
 .play-radio-button {
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
+  width: 6rem;
+  height: 2.2rem;
   background-color: #007bff;
   color: white;
   border: none;
-  cursor: pointer;
   transition: background-color 0.3s;
+  cursor: pointer;
+
   &:hover {
-    background-color: #0056b3;
+    background-color: #63a9f4;
   }
+
   &:disabled {
     background-color: #ccc;
     cursor: not-allowed;
   }
+
   &:focus {
     outline: none;
     box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
