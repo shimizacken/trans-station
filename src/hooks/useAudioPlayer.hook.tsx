@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { mediaElementEventsNeutron } from '../signals/mediaElementEvents.signal';
+import { mediaElementStatus } from '../signals/mediaElementStatus.signal';
 
 const mediaElementEvents = [
   'abort',
@@ -53,28 +54,31 @@ export const useAudioPlayer = (audioRef: React.RefObject<HTMLAudioElement | null
     const handlePlaying = () => {
       setIsLoading(false);
       setIsPlaying(true);
+      mediaElementStatus.emit('playing');
     };
 
     const handlePause = () => {
       setIsLoading(false);
       setIsPlaying(false);
+      mediaElementStatus.emit('paused');
     };
 
     const handleStalled = () => {
       setIsLoading(true);
       setIsPlaying(false);
+      mediaElementStatus.emit('stalled');
     };
 
     const handleOffline = () => {
       setIsLoading(true);
       setIsPlaying(false);
-      console.log('🚀 ~ handleOffline ~ setIsPlaying');
     };
 
     const handleError = () => {
       setIsError(true);
       setIsLoading(false);
       setIsPlaying(false);
+      mediaElementStatus.emit('error');
     };
 
     const events = {
