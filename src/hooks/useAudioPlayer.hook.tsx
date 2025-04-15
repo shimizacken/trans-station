@@ -22,7 +22,6 @@ const mediaElementEvents = [
   'seeking',
   'stalled',
   'suspend',
-  // 'timeupdate',
   'volumechange',
   'waiting',
 ] as const;
@@ -31,10 +30,6 @@ export const useAudioPlayer = (audioRef: React.RefObject<HTMLAudioElement | null
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-
-  useEffect(() => {
-    console.log('online?', navigator.onLine);
-  }, [navigator.onLine]);
 
   useEffect(() => {
     const audio = audioRef.current;
