@@ -5,6 +5,12 @@ type RadioWithVolumeProps = {
   className?: string;
 };
 
+const setActualVolume = (audioRef: React.ForwardedRef<HTMLAudioElement>, volume: number) => {
+  if (audioRef && 'current' in audioRef && audioRef.current) {
+    audioRef.current.volume = volume;
+  }
+};
+
 export const VolumeSliderContainer = forwardRef<HTMLAudioElement, RadioWithVolumeProps>(
   ({ className }, audioRef) => {
     const [volume, setVolume] = useState(0.8);
@@ -13,15 +19,11 @@ export const VolumeSliderContainer = forwardRef<HTMLAudioElement, RadioWithVolum
       const newVolume = value / 100;
       setVolume(newVolume);
 
-      if (audioRef && 'current' in audioRef && audioRef.current) {
-        console.log('🚀 ~ handleVolumeChange ~ newVolume:', newVolume);
-        audioRef.current.volume = newVolume;
-      }
+      setActualVolume(audioRef, volume);
     };
+
     useEffect(() => {
-      if (audioRef && 'current' in audioRef && audioRef.current) {
-        audioRef.current.volume = volume;
-      }
+      setActualVolume(audioRef, volume);
     }, []);
 
     return (
