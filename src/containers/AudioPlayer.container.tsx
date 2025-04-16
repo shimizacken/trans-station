@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 // import { AudioPlayer } from '../components/AudioPlayer.view';
 // import { stations } from '../constants/radioStations';
 import { useSpaceKey } from '../hooks/useSpaceKey.hook';
-import { useAudioPlayer } from '../hooks/useAudioPlayer.hook';
+import { useMediaPlayerEvents } from '../hooks/useMediaPlayerEvents.hook';
 // import { PlayRadioButton } from '../components/PlayRadioButton.view';
 // import { VolumeSliderContainer } from './VolumeSlider.container';
 import { HLSPlayerContainer } from './HLSPlayer.container';
@@ -17,7 +17,7 @@ import { HLSPlayerContainer } from './HLSPlayer.container';
  */
 export const AudioPlayerContainer: React.FC = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const { isPlaying, isLoading } = useAudioPlayer(audioRef);
+  const { isPlaying, isLoading } = useMediaPlayerEvents(audioRef);
 
   const handlePlayPause = () => {
     if (audioRef.current) {

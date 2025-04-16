@@ -27,7 +27,7 @@ const mediaElementEvents = [
   'waiting',
 ] as const;
 
-export const useAudioPlayer = (
+export const useMediaPlayerEvents = (
   audioRef: React.RefObject<HTMLAudioElement | HTMLVideoElement | null>
 ) => {
   const [isPlaying, setIsPlaying] = useState(false);

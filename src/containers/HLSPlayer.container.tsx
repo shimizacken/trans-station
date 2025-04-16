@@ -3,13 +3,13 @@ import Hls from 'hls.js';
 import { Silver } from 'react-dial-knob';
 import { PlayRadioButton } from '../components/PlayRadioButton.view';
 import { stations } from '../constants/radioStations';
-import { useAudioPlayer } from '../hooks/useAudioPlayer.hook';
+import { useMediaPlayerEvents } from '../hooks/useMediaPlayerEvents.hook';
 
 const hlsUrl = stations[0].streamUrls[0].url; // Replace with the actual HLS URL
 
 export const HLSPlayerContainer: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const { isPlaying, isLoading } = useAudioPlayer(videoRef);
+  const { isPlaying, isLoading } = useMediaPlayerEvents(videoRef);
   const [volume, setVolume] = React.useState(0.8);
 
   useEffect(() => {
