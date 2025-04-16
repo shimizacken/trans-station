@@ -1,6 +1,6 @@
-import { Stations } from '../types/station.types';
+import { RadioStations } from '../types/station.types';
 
-export const stations: Stations = [
+export const stations: RadioStations = [
   {
     id: 'kan-bet',
     name: 'Kan Bet',

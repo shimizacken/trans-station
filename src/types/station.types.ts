@@ -12,7 +12,7 @@ export type StreamURL = {
   protocol: SteamProtocol;
 };
 
-export type Station = {
+export type RadioStation = {
   id: string;
   name: string;
   streamUrls: StreamURL[];
@@ -24,4 +24,4 @@ export type Station = {
   status?: MediaElementStatus;
 };
 
-export type Stations = Station[];
+export type RadioStations = RadioStation[];

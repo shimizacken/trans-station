@@ -56,8 +56,8 @@
 }
 
 // https://codepen.io/yuhomyan/pen/jOqvjZq
-.play-radio-button {
-  margin: 20px;
+.play-radio-button,
+.radio-station-button {
   width: 130px;
   color: #262626;
   border-radius: 5px;
@@ -136,4 +136,10 @@ video {
   width: 100%;
   height: 0; /* or 0 if you hide it completely */
   background: none;
+}
+
+.radio-station-button {
+  font-size: 12px;
+  width: 100px;
+  margin: 8px;
 }
