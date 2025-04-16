@@ -143,3 +143,10 @@ video {
   width: 100px;
   margin: 8px;
 }
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
