@@ -1,10 +1,10 @@
 import React, { useRef } from 'react';
-import { AudioPlayer } from '../components/AudioPlayer.view';
-import { stations } from '../constants/radioStations';
+// import { AudioPlayer } from '../components/AudioPlayer.view';
+// import { stations } from '../constants/radioStations';
 import { useSpaceKey } from '../hooks/useSpaceKey.hook';
 import { useAudioPlayer } from '../hooks/useAudioPlayer.hook';
-import { PlayRadioButton } from '../components/PlayRadioButton.view';
-import { VolumeSliderContainer } from './VolumeSlider.container';
+// import { PlayRadioButton } from '../components/PlayRadioButton.view';
+// import { VolumeSliderContainer } from './VolumeSlider.container';
 import { HLSPlayerContainer } from './HLSPlayer.container';
 
 /*
@@ -17,7 +17,6 @@ import { HLSPlayerContainer } from './HLSPlayer.container';
  */
 export const AudioPlayerContainer: React.FC = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const videoRef = useRef<HTMLVideoElement | null>(null);
   const { isPlaying, isLoading } = useAudioPlayer(audioRef);
 
   const handlePlayPause = () => {
@@ -36,13 +35,12 @@ export const AudioPlayerContainer: React.FC = () => {
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
-        <VolumeSliderContainer ref={audioRef} />
-        <AudioPlayer ref={audioRef} streamUrl={stations[1].streamUrls[0].url} />
+        {/* <VolumeSliderContainer ref={audioRef} />
+        <AudioPlayer ref={audioRef} streamUrl={stations[1].streamUrls[0].url} /> */}
         <HLSPlayerContainer />
-        <video ref={videoRef} id="video" controls></video>
-        <div style={{ marginTop: '10px' }}>
+        {/* <div style={{ marginTop: '10px' }}>
           <PlayRadioButton onClick={handlePlayPause} isPlaying={isPlaying} isLoading={isLoading} />
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -1,16 +1,19 @@
 import React, { useEffect, useRef } from 'react';
 import Hls from 'hls.js';
 import { Silver } from 'react-dial-knob';
+import { PlayRadioButton } from '../components/PlayRadioButton.view';
+import { stations } from '../constants/radioStations';
+import { useAudioPlayer } from '../hooks/useAudioPlayer.hook';
 
-const hlsUrl = 'https://kan88.media.kan.org.il/hls/live/2024812/2024812/playlist.m3u8';
+const hlsUrl = stations[0].streamUrls[0].url; // Replace with the actual HLS URL
 
 export const HLSPlayerContainer: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const playButtonRef = useRef<HTMLButtonElement | null>(null);
+  const { isPlaying, isLoading } = useAudioPlayer(videoRef);
   const [volume, setVolume] = React.useState(0.8);
 
   useEffect(() => {
-    if (videoRef.current && playButtonRef.current) {
+    if (videoRef.current) {
       if (Hls.isSupported()) {
         const hls = new Hls();
         hls.loadSource(hlsUrl);
@@ -20,20 +23,33 @@ export const HLSPlayerContainer: React.FC = () => {
             videoRef.current.volume = volume;
           }
         });
+
+        hls.on(Hls.Events.MANIFEST_PARSED, (event, data) => {
+          console.log('Available levels:', data.levels);
+          // Each level includes bitrate, resolution, codecs, etc.
+        });
+
+        hls.on(Hls.Events.FRAG_PARSING_METADATA, (event, data) => {
+          console.log('🚀 ~ hls.on ~ data:', data);
+          data.samples.forEach((sample) => {
+            const textDecoder = new TextDecoder('utf-8');
+            const info = textDecoder.decode(sample.data);
+            console.log('Metadata:', info);
+            // You can parse this further depending on your stream
+          });
+        });
       } else if (videoRef.current.canPlayType('application/vnd.apple.mpegurl')) {
         videoRef.current.src = hlsUrl;
       }
     }
-  }, [videoRef.current, playButtonRef.current]);
+  }, [videoRef.current]);
 
   const handlePlayPause = () => {
-    if (videoRef.current && playButtonRef.current) {
+    if (videoRef.current) {
       if (videoRef.current.paused) {
         videoRef.current.play();
-        playButtonRef.current.innerText = 'Pause';
       } else {
         videoRef.current.pause();
-        playButtonRef.current.innerText = 'Play';
       }
     }
   };
@@ -50,9 +66,6 @@ export const HLSPlayerContainer: React.FC = () => {
     <div>
       <video ref={videoRef} id="video" width="640" height="360"></video>
       <div className="controls">
-        <button id="playPause" ref={playButtonRef} onClick={handlePlayPause}>
-          Play
-        </button>
         <Silver
           diameter={180}
           min={0}
@@ -61,6 +74,9 @@ export const HLSPlayerContainer: React.FC = () => {
           value={volume * 100}
           onValueChange={handleVolumeChange}
         />
+        <div style={{ marginTop: '10px', display: 'flex', justifyContent: 'center' }}>
+          <PlayRadioButton onClick={handlePlayPause} isPlaying={isPlaying} isLoading={isLoading} />
+        </div>
       </div>
     </div>
   );
