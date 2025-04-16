@@ -5,10 +5,17 @@ export type StationUserPreferences = {
 
 export type MediaElementStatus = 'paused' | 'playing' | 'stalled' | 'error';
 
-export type Station = {
+export type SteamProtocol = 'hls' | 'http';
+
+export type StreamURL = {
+  url: string;
+  protocol: SteamProtocol;
+};
+
+export type RadioStation = {
   id: string;
   name: string;
-  streamUrl: string;
+  streamUrls: StreamURL[];
   logoUrl: string;
   description?: string;
   genre: string;
@@ -17,4 +24,4 @@ export type Station = {
   status?: MediaElementStatus;
 };
 
-export type Stations = Station[];
+export type RadioStations = RadioStation[];

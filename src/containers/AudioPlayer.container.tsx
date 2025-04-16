@@ -1,10 +1,11 @@
-import React, { useEffect, useRef } from 'react';
-import { AudioPlayer } from '../components/AudioPlayer.view';
-import { stations } from '../constants/radioStations';
+import React, { useRef } from 'react';
+// import { AudioPlayer } from '../components/AudioPlayer.view';
+// import { stations } from '../constants/radioStations';
 import { useSpaceKey } from '../hooks/useSpaceKey.hook';
-import { useAudioPlayer } from '../hooks/useAudioPlayer.hook';
-import { PlayRadioButton } from '../components/PlayRadioButton.view';
-import { VolumeSliderContainer } from './VolumeSlider.container';
+import { useMediaPlayerEvents } from '../hooks/useMediaPlayerEvents.hook';
+// import { PlayRadioButton } from '../components/PlayRadioButton.view';
+// import { VolumeSliderContainer } from './VolumeSlider.container';
+import { HLSPlayerContainer } from './HLSPlayer.container';
 
 /*
  * AudioPlayerContainer
@@ -16,7 +17,7 @@ import { VolumeSliderContainer } from './VolumeSlider.container';
  */
 export const AudioPlayerContainer: React.FC = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const { isPlaying, isLoading } = useAudioPlayer(audioRef);
+  const { isPlaying, isLoading } = useMediaPlayerEvents(audioRef);
 
   const handlePlayPause = () => {
     if (audioRef.current) {
@@ -34,11 +35,12 @@ export const AudioPlayerContainer: React.FC = () => {
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
-        <VolumeSliderContainer ref={audioRef} />
-        <AudioPlayer ref={audioRef} streamUrl={stations[1].streamUrl} />
-        <div style={{ marginTop: '10px' }}>
+        {/* <VolumeSliderContainer ref={audioRef} />
+        <AudioPlayer ref={audioRef} streamUrl={stations[1].streamUrls[0].url} /> */}
+        <HLSPlayerContainer />
+        {/* <div style={{ marginTop: '10px' }}>
           <PlayRadioButton onClick={handlePlayPause} isPlaying={isPlaying} isLoading={isLoading} />
-        </div>
+        </div> */}
       </div>
     </div>
   );
