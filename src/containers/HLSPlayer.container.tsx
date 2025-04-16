@@ -4,6 +4,7 @@ import { Silver } from 'react-dial-knob';
 import { PlayRadioButton } from '../components/PlayRadioButton.view';
 import { stations } from '../constants/radioStations';
 import { useMediaPlayerEvents } from '../hooks/useMediaPlayerEvents.hook';
+import { StationButtons } from '../components/StationButtons.view';
 
 const hlsUrl = stations[0].streamUrls[0].url; // Replace with the actual HLS URL
 
@@ -64,6 +65,7 @@ export const HLSPlayerContainer: React.FC = () => {
 
   return (
     <div>
+      <StationButtons stations={stations} />
       <video ref={videoRef} id="video" width="640" height="360"></video>
       <div className="controls">
         <Silver
@@ -75,7 +77,13 @@ export const HLSPlayerContainer: React.FC = () => {
           onValueChange={handleVolumeChange}
         />
         <div style={{ marginTop: '10px', display: 'flex', justifyContent: 'center' }}>
-          <PlayRadioButton onClick={handlePlayPause} isPlaying={isPlaying} isLoading={isLoading} />
+          <PlayRadioButton
+            onClick={handlePlayPause}
+            isPlaying={isPlaying}
+            isLoading={isLoading}
+            text="Play"
+            altText="Pause"
+          />
         </div>
       </div>
     </div>
