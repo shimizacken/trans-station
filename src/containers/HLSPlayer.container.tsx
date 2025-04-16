@@ -84,7 +84,7 @@ export const HLSPlayerContainer: React.FC = () => {
           value={volume * 100}
           onValueChange={handleVolumeChange}
         />
-        <div style={{ marginTop: '10px', display: 'flex', justifyContent: 'center' }}>
+        <div style={{ marginTop: '18px', display: 'flex', justifyContent: 'center' }}>
           <PlayRadioButton
             onClick={handlePlayPause}
             isPlaying={isPlaying}
