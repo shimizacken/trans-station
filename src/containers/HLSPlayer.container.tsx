@@ -49,9 +49,14 @@ export const HLSPlayerContainer: React.FC = () => {
 
   useEffect(() => {
     stationChanged.watch((stationId) => {
-      setCurrentStation(stations.find((station) => station.id === stationId) || stations[0]);
+      const station = stations.find((station) => station.id === stationId) || stations[0];
+      setCurrentStation(station);
     });
   }, []);
+
+  useEffect(() => {
+    document.title = `${currentStation.name}`;
+  }, [currentStation]);
 
   const handlePlayPause = () => {
     if (videoRef.current) {
