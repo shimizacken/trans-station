@@ -4,17 +4,19 @@ import { Silver } from 'react-dial-knob';
 import { PlayRadioButton } from '../components/PlayRadioButton.view';
 import { stations } from '../constants/radioStations';
 import { useMediaPlayerEvents } from '../hooks/useMediaPlayerEvents.hook';
-import { StationButtons } from '../components/StationButtons.view';
-
-const hlsUrl = stations[0].streamUrls[0].url; // Replace with the actual HLS URL
+import { StationButtonsContainer } from './StationButtons.container';
+import { stationChanged } from '../signals/stationChanged.signal';
 
 export const HLSPlayerContainer: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const { isPlaying, isLoading } = useMediaPlayerEvents(videoRef);
   const [volume, setVolume] = React.useState(0.8);
+  const [currentStation, setCurrentStation] = React.useState(stations[0]);
 
   useEffect(() => {
     if (videoRef.current) {
+      const hlsUrl = currentStation.streamUrls[0].url;
+
       if (Hls.isSupported()) {
         const hls = new Hls();
         hls.loadSource(hlsUrl);
@@ -43,7 +45,13 @@ export const HLSPlayerContainer: React.FC = () => {
         videoRef.current.src = hlsUrl;
       }
     }
-  }, [videoRef.current]);
+  }, [videoRef.current, currentStation]);
+
+  useEffect(() => {
+    stationChanged.watch((stationId) => {
+      setCurrentStation(stations.find((station) => station.id === stationId) || stations[0]);
+    });
+  }, []);
 
   const handlePlayPause = () => {
     if (videoRef.current) {
@@ -65,7 +73,7 @@ export const HLSPlayerContainer: React.FC = () => {
 
   return (
     <div>
-      <StationButtons stations={stations} />
+      <StationButtonsContainer stations={stations} />
       <video ref={videoRef} id="video" width="640" height="360"></video>
       <div className="controls">
         <Silver
@@ -83,6 +91,7 @@ export const HLSPlayerContainer: React.FC = () => {
             isLoading={isLoading}
             text="Play"
             altText="Pause"
+            id="play-pause-button"
           />
         </div>
       </div>
