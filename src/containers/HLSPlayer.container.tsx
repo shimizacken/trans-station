@@ -6,6 +6,7 @@ import { stations } from '../constants/radioStations';
 import { useMediaPlayerEvents } from '../hooks/useMediaPlayerEvents.hook';
 import { StationButtonsContainer } from './StationButtons.container';
 import { stationChanged } from '../signals/stationChanged.signal';
+import { mediaElementEventsNeutron } from '../signals/mediaElementEvents.signal';
 
 export const HLSPlayerContainer: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -70,9 +71,19 @@ export const HLSPlayerContainer: React.FC = () => {
   const handleVolumeChange = (value: number) => {
     if (videoRef.current) {
       const newVolume = value / 100;
-      console.log('🚀 ~ video volume:', videoRef.current.volume);
+      mediaElementEventsNeutron.emit({
+        id: crypto.randomUUID(),
+        timestamp: new Date(),
+        level: 'info',
+        message: `🚀 ~ video volume be ${videoRef.current.volume}`,
+      });
       videoRef.current.volume = newVolume;
-      console.log('🚀 ~ video volume:', videoRef.current.volume);
+      mediaElementEventsNeutron.emit({
+        id: crypto.randomUUID(),
+        timestamp: new Date(),
+        level: 'info',
+        message: `🚀 ~ video volume af ${videoRef.current.volume}`,
+      });
       setVolume(newVolume);
     }
   };
