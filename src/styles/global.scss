@@ -12,7 +12,6 @@ body {
 
 main {
   margin: 0 auto;
-  padding: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,4 +36,8 @@ h1 {
 h2 {
   font-size: 2rem;
   margin: 0;
+}
+
+video {
+  display: none;
 }
