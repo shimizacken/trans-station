@@ -40,6 +40,40 @@ export const stations: RadioStations = [
     },
   },
   {
+    id: 'kan-kol-hamusica',
+    name: 'Kan Kol Hamusica',
+    streamUrls: [
+      {
+        url: 'https://kankolhamusica.media.kan.org.il/hls/live/2024817/2024817/playlist.m3u8',
+        protocol: 'hls',
+      },
+    ],
+    logoUrl: 'src/images/logos/reshet-bet.png',
+    description: 'Kan Kol Hamusica is a Israeli classical music radio station.',
+    genre: 'Music',
+    country: 'Israel',
+    userPreferences: {
+      favorite: false,
+    },
+  },
+  {
+    id: 'kan-gimmel',
+    name: 'Kan Gimmel',
+    streamUrls: [
+      {
+        url: 'https://kangimmel.media.kan.org.il/hls/live/2024813/2024813/playlist.m3u8',
+        protocol: 'hls',
+      },
+    ],
+    logoUrl: 'src/images/logos/reshet-bet.png',
+    description: 'Kan Gimmel is a Israeli music radio station.',
+    genre: 'Music',
+    country: 'Israel',
+    userPreferences: {
+      favorite: false,
+    },
+  },
+  {
     id: 'galgalatz',
     name: 'Galgalatz',
     streamUrls: [

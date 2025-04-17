@@ -7,7 +7,16 @@ export const StationButtons: React.FC<{
   selectedStation: string;
   handleStationClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }> = ({ stations, selectedStation, handleStationClick }) => (
-  <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+  <div
+    style={{
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexWrap: 'wrap',
+      width: '350px',
+    }}
+  >
     {stations.map((station) => (
       <RadioStationButton
         key={station.id}

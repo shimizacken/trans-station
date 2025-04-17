@@ -28,7 +28,6 @@ export const HLSPlayerContainer: React.FC = () => {
         });
 
         hls.on(Hls.Events.MANIFEST_PARSED, (event, data) => {
-          console.log('Available levels:', data.levels);
           // Each level includes bitrate, resolution, codecs, etc.
         });
 
