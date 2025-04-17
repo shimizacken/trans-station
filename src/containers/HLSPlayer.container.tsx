@@ -79,7 +79,16 @@ export const HLSPlayerContainer: React.FC = () => {
   return (
     <div>
       <StationButtonsContainer stations={stations} />
-      <video ref={videoRef} id="video" width="640" height="360"></video>
+      <video
+        ref={videoRef}
+        id="video"
+        width="640"
+        height="360"
+        playsInline
+        webkit-playsinline
+        controls
+        muted
+      ></video>
       <div className="controls">
         <Silver
           diameter={180}
