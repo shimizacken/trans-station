@@ -7,6 +7,7 @@ export const stations: RadioStations = [
     streamUrls: [
       {
         url: 'https://kanbet.media.kan.org.il/hls/live/2024811/2024811/playlist.m3u8',
+        liveTrackDataUrl: 'https://www.kan.org.il/api/arc-cloud/get-live-track-data?channelId=8',
         protocol: 'hls',
       },
       {
@@ -28,6 +29,7 @@ export const stations: RadioStations = [
     streamUrls: [
       {
         url: 'https://kan88.media.kan.org.il/hls/live/2024812/2024812/playlist.m3u8',
+        liveTrackDataUrl: 'https://www.kan.org.il/api/arc-cloud/get-live-track-data?channelId=4',
         protocol: 'hls',
       },
     ],
@@ -45,6 +47,7 @@ export const stations: RadioStations = [
     streamUrls: [
       {
         url: 'https://kankolhamusica.media.kan.org.il/hls/live/2024817/2024817/playlist.m3u8',
+        liveTrackDataUrl: 'https://www.kan.org.il/api/arc-cloud/get-live-track-data?channelId=5',
         protocol: 'hls',
       },
     ],
@@ -62,6 +65,7 @@ export const stations: RadioStations = [
     streamUrls: [
       {
         url: 'https://kangimmel.media.kan.org.il/hls/live/2024813/2024813/playlist.m3u8',
+        liveTrackDataUrl: 'https://www.kan.org.il/api/arc-cloud/get-live-track-data?channelId=9',
         protocol: 'hls',
       },
     ],

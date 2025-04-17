@@ -9,6 +9,7 @@ export type SteamProtocol = 'hls' | 'http';
 
 export type StreamURL = {
   url: string;
+  liveTrackDataUrl?: string;
   protocol: SteamProtocol;
 };
 
