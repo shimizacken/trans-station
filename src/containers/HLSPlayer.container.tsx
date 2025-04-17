@@ -12,7 +12,10 @@ export const HLSPlayerContainer: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const { isPlaying, isLoading } = useMediaPlayerEvents(videoRef);
   const [volume, setVolume] = React.useState(0.8);
-  const [currentStation, setCurrentStation] = React.useState(stations[0]);
+  const loadCurrentStation = localStorage.getItem('currentStation');
+  const parsedCurrentStation = loadCurrentStation ? JSON.parse(loadCurrentStation) : null;
+  const station = stations.find((station) => station.id === parsedCurrentStation) || stations[0];
+  const [currentStation, setCurrentStation] = React.useState(station);
 
   useEffect(() => {
     if (videoRef.current) {
@@ -51,6 +54,7 @@ export const HLSPlayerContainer: React.FC = () => {
     stationChanged.watch((stationId) => {
       const station = stations.find((station) => station.id === stationId) || stations[0];
       setCurrentStation(station);
+      localStorage.setItem('currentStation', JSON.stringify(station.id));
     });
   }, []);
 
