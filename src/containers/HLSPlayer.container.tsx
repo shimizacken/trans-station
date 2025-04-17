@@ -7,17 +7,13 @@ import { useMediaPlayerEvents } from '../hooks/useMediaPlayerEvents.hook';
 import { StationButtonsContainer } from './StationButtons.container';
 import { stationChanged } from '../signals/stationChanged.signal';
 import { mediaElementEventsNeutron } from '../signals/mediaElementEvents.signal';
-import { RadioStationId } from '../types/station.types';
+import { useLoadPersistSelectedRadioStation } from '../hooks/useLoadPersistSelectedRadioStation';
 
 export const HLSPlayerContainer: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const { isPlaying, isLoading } = useMediaPlayerEvents(videoRef);
   const [volume, setVolume] = React.useState(0.8);
-  const loadCurrentStation = localStorage.getItem('currentStation');
-  const parsedCurrentStationId: RadioStationId = loadCurrentStation
-    ? JSON.parse(loadCurrentStation)
-    : null;
-  const station = stations[parsedCurrentStationId] || stations['kan-bet'];
+  const station = useLoadPersistSelectedRadioStation(stations);
   const [currentStation, setCurrentStation] = React.useState(station);
 
   useEffect(() => {

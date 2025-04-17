@@ -2,13 +2,10 @@ import React from 'react';
 import { RadioStationId, RadioStations } from '../types/station.types';
 import { StationButtons } from '../components/StationButtons.view';
 import { stationChanged } from '../signals/stationChanged.signal';
+import { useLoadPersistSelectedRadioStation } from '../hooks/useLoadPersistSelectedRadioStation';
 
 export const StationButtonsContainer: React.FC<{ stations: RadioStations }> = ({ stations }) => {
-  const loadCurrentStation = localStorage.getItem('currentStation');
-  const parsedCurrentStationId: RadioStationId = loadCurrentStation
-    ? JSON.parse(loadCurrentStation)
-    : null;
-  const station = stations[parsedCurrentStationId] || stations['kan-bet'];
+  const station = useLoadPersistSelectedRadioStation(stations);
   const [selectedStation, setSelectedStation] = React.useState<string>(station.id);
 
   const handleStationClick = (event: React.MouseEvent<HTMLButtonElement>) => {
