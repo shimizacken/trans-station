@@ -70,7 +70,9 @@ export const HLSPlayerContainer: React.FC = () => {
   const handleVolumeChange = (value: number) => {
     if (videoRef.current) {
       const newVolume = value / 100;
+      console.log('🚀 ~ video volume:', videoRef.current.volume);
       videoRef.current.volume = newVolume;
+      console.log('🚀 ~ video volume:', videoRef.current.volume);
       setVolume(newVolume);
     }
   };
