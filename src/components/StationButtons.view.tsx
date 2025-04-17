@@ -17,7 +17,7 @@ export const StationButtons: React.FC<{
       width: '350px',
     }}
   >
-    {stations.map((station) => (
+    {Object.values(stations).map((station) => (
       <RadioStationButton
         key={station.id}
         id={station.id}

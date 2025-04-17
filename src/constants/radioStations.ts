@@ -1,7 +1,7 @@
 import { RadioStations } from '../types/station.types';
 
-export const stations: RadioStations = [
-  {
+export const stations: RadioStations = {
+  'kan-bet': {
     id: 'kan-bet',
     name: 'Kan Bet',
     streamUrls: [
@@ -23,7 +23,7 @@ export const stations: RadioStations = [
       favorite: true,
     },
   },
-  {
+  'kan-88': {
     id: 'kan-88',
     name: 'Kan 88',
     streamUrls: [
@@ -41,7 +41,7 @@ export const stations: RadioStations = [
       favorite: true,
     },
   },
-  {
+  'kan-kol-hamusica': {
     id: 'kan-kol-hamusica',
     name: 'Kan Kol Hamusica',
     streamUrls: [
@@ -59,7 +59,7 @@ export const stations: RadioStations = [
       favorite: false,
     },
   },
-  {
+  'kan-gimmel': {
     id: 'kan-gimmel',
     name: 'Kan Gimmel',
     streamUrls: [
@@ -77,7 +77,7 @@ export const stations: RadioStations = [
       favorite: false,
     },
   },
-  {
+  galgalatz: {
     id: 'galgalatz',
     name: 'Galgalatz',
     streamUrls: [
@@ -94,7 +94,7 @@ export const stations: RadioStations = [
       favorite: false,
     },
   },
-  {
+  galatz: {
     id: 'galatz',
     name: 'Galatz',
     streamUrls: [
@@ -111,4 +111,4 @@ export const stations: RadioStations = [
       favorite: false,
     },
   },
-];
+};

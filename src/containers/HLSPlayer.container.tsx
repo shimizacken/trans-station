@@ -7,14 +7,17 @@ import { useMediaPlayerEvents } from '../hooks/useMediaPlayerEvents.hook';
 import { StationButtonsContainer } from './StationButtons.container';
 import { stationChanged } from '../signals/stationChanged.signal';
 import { mediaElementEventsNeutron } from '../signals/mediaElementEvents.signal';
+import { RadioStationId } from '../types/station.types';
 
 export const HLSPlayerContainer: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const { isPlaying, isLoading } = useMediaPlayerEvents(videoRef);
   const [volume, setVolume] = React.useState(0.8);
   const loadCurrentStation = localStorage.getItem('currentStation');
-  const parsedCurrentStation = loadCurrentStation ? JSON.parse(loadCurrentStation) : null;
-  const station = stations.find((station) => station.id === parsedCurrentStation) || stations[0];
+  const parsedCurrentStationId: RadioStationId = loadCurrentStation
+    ? JSON.parse(loadCurrentStation)
+    : null;
+  const station = stations[parsedCurrentStationId] || stations['kan-bet'];
   const [currentStation, setCurrentStation] = React.useState(station);
 
   useEffect(() => {
@@ -52,9 +55,11 @@ export const HLSPlayerContainer: React.FC = () => {
 
   useEffect(() => {
     stationChanged.watch((stationId) => {
-      const station = stations.find((station) => station.id === stationId) || stations[0];
-      setCurrentStation(station);
-      localStorage.setItem('currentStation', JSON.stringify(station.id));
+      if (stationId) {
+        const station = stations[stationId] || stations['kan-bet'];
+        setCurrentStation(station);
+        localStorage.setItem('currentStation', JSON.stringify(station.id));
+      }
     });
   }, []);
 
