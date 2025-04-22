@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import Hls from 'hls.js';
-import { RadioStation } from '../types/station.types';
+import type { RadioStation } from '../types/station.types';
 
 export const useHls = (
   videoRef: React.RefObject<HTMLVideoElement | null>,
@@ -9,7 +9,7 @@ export const useHls = (
 ) => {
   useEffect(() => {
     if (videoRef.current) {
-      const hlsUrl = currentStation.streamUrls[0].url;
+      const hlsUrl = `${currentStation.streamUrls[0].url}?d=${Date.now()}`;
 
       if (Hls.isSupported()) {
         const hls = new Hls();
