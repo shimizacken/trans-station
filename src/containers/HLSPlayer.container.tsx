@@ -35,6 +35,7 @@ export const HLSPlayerContainer: React.FC = () => {
   const handlePlayPause = () => {
     if (videoRef.current) {
       if (videoRef.current.paused) {
+        videoRef.current.load();
         videoRef.current.play();
       } else {
         videoRef.current.pause();
