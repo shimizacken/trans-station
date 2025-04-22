@@ -16,7 +16,7 @@ export const HLSPlayerContainer: React.FC = () => {
   const station = useLoadPersistSelectedRadioStation(stations);
   const [currentStation, setCurrentStation] = React.useState(station);
 
-  useHls(videoRef, currentStation, volume);
+  const hls = useHls(videoRef, currentStation, volume);
 
   useEffect(() => {
     stationChanged.watch((stationId) => {
@@ -36,6 +36,7 @@ export const HLSPlayerContainer: React.FC = () => {
     if (videoRef.current) {
       if (videoRef.current.paused) {
         // videoRef.current.load();
+        hls?.loadSource(currentStation.streamUrls[0].url);
         videoRef.current.play();
       } else {
         videoRef.current.pause();

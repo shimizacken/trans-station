@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Hls from 'hls.js';
 import type { RadioStation } from '../types/station.types';
 
@@ -7,14 +7,19 @@ export const useHls = (
   currentStation: RadioStation,
   volume: number
 ) => {
+  const [hls, setHls] = useState<Hls>();
+
   useEffect(() => {
+    const hls = new Hls();
+    setHls(hls);
+
     if (videoRef.current) {
-      const hlsUrl = `${currentStation.streamUrls[0].url}?d=${Date.now()}`;
+      const hlsUrl = currentStation.streamUrls[0].url;
 
       if (Hls.isSupported()) {
-        const hls = new Hls();
         hls.loadSource(hlsUrl);
         hls.attachMedia(videoRef.current);
+
         hls.on(Hls.Events.MANIFEST_PARSED, () => {
           if (videoRef.current) {
             videoRef.current.volume = volume;
@@ -39,4 +44,6 @@ export const useHls = (
       }
     }
   }, [videoRef.current, currentStation]);
+
+  return hls;
 };
