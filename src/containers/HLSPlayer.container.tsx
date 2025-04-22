@@ -7,54 +7,25 @@ import { useMediaPlayerEvents } from '../hooks/useMediaPlayerEvents.hook';
 import { StationButtonsContainer } from './StationButtons.container';
 import { stationChanged } from '../signals/stationChanged.signal';
 import { mediaElementEventsNeutron } from '../signals/mediaElementEvents.signal';
+import { useLoadPersistSelectedRadioStation } from '../hooks/useLoadPersistSelectedRadioStation';
+import { useHls } from '../hooks/useHls.hook';
 
 export const HLSPlayerContainer: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const { isPlaying, isLoading } = useMediaPlayerEvents(videoRef);
   const [volume, setVolume] = React.useState(0.8);
-  const loadCurrentStation = localStorage.getItem('currentStation');
-  const parsedCurrentStation = loadCurrentStation ? JSON.parse(loadCurrentStation) : null;
-  const station = stations.find((station) => station.id === parsedCurrentStation) || stations[0];
+  const station = useLoadPersistSelectedRadioStation(stations);
   const [currentStation, setCurrentStation] = React.useState(station);
 
-  useEffect(() => {
-    if (videoRef.current) {
-      const hlsUrl = currentStation.streamUrls[0].url;
-
-      if (Hls.isSupported()) {
-        const hls = new Hls();
-        hls.loadSource(hlsUrl);
-        hls.attachMedia(videoRef.current);
-        hls.on(Hls.Events.MANIFEST_PARSED, () => {
-          if (videoRef.current) {
-            videoRef.current.volume = volume;
-          }
-        });
-
-        hls.on(Hls.Events.MANIFEST_PARSED, (event, data) => {
-          // Each level includes bitrate, resolution, codecs, etc.
-        });
-
-        hls.on(Hls.Events.FRAG_PARSING_METADATA, (event, data) => {
-          console.log('🚀 ~ hls.on ~ data:', data);
-          data.samples.forEach((sample) => {
-            const textDecoder = new TextDecoder('utf-8');
-            const info = textDecoder.decode(sample.data);
-            console.log('Metadata:', info);
-            // You can parse this further depending on your stream
-          });
-        });
-      } else if (videoRef.current.canPlayType('application/vnd.apple.mpegurl')) {
-        videoRef.current.src = hlsUrl;
-      }
-    }
-  }, [videoRef.current, currentStation]);
+  useHls(videoRef, currentStation, volume);
 
   useEffect(() => {
     stationChanged.watch((stationId) => {
-      const station = stations.find((station) => station.id === stationId) || stations[0];
-      setCurrentStation(station);
-      localStorage.setItem('currentStation', JSON.stringify(station.id));
+      if (stationId) {
+        const station = stations[stationId] || stations['kan-bet'];
+        setCurrentStation(station);
+        localStorage.setItem('currentStation', JSON.stringify(station.id));
+      }
     });
   }, []);
 

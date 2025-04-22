@@ -9,11 +9,20 @@ export type SteamProtocol = 'hls' | 'http';
 
 export type StreamURL = {
   url: string;
+  liveTrackDataUrl?: string;
   protocol: SteamProtocol;
 };
 
+export type RadioStationId =
+  | 'kan-bet'
+  | 'kan-88'
+  | 'kan-kol-hamusica'
+  | 'kan-gimmel'
+  | 'galgalatz'
+  | 'galatz';
+
 export type RadioStation = {
-  id: string;
+  id: RadioStationId;
   name: string;
   streamUrls: StreamURL[];
   logoUrl: string;
@@ -24,4 +33,6 @@ export type RadioStation = {
   status?: MediaElementStatus;
 };
 
-export type RadioStations = RadioStation[];
+export type RadioStations = {
+  [key in RadioStationId]: RadioStation;
+};

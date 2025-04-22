@@ -1,12 +1,13 @@
 import { RadioStations } from '../types/station.types';
 
-export const stations: RadioStations = [
-  {
+export const stations: RadioStations = {
+  'kan-bet': {
     id: 'kan-bet',
     name: 'Kan Bet',
     streamUrls: [
       {
         url: 'https://kanbet.media.kan.org.il/hls/live/2024811/2024811/playlist.m3u8',
+        liveTrackDataUrl: 'https://www.kan.org.il/api/arc-cloud/get-live-track-data?channelId=8',
         protocol: 'hls',
       },
       {
@@ -22,12 +23,13 @@ export const stations: RadioStations = [
       favorite: true,
     },
   },
-  {
+  'kan-88': {
     id: 'kan-88',
     name: 'Kan 88',
     streamUrls: [
       {
         url: 'https://kan88.media.kan.org.il/hls/live/2024812/2024812/playlist.m3u8',
+        liveTrackDataUrl: 'https://www.kan.org.il/api/arc-cloud/get-live-track-data?channelId=4',
         protocol: 'hls',
       },
     ],
@@ -39,12 +41,13 @@ export const stations: RadioStations = [
       favorite: true,
     },
   },
-  {
+  'kan-kol-hamusica': {
     id: 'kan-kol-hamusica',
     name: 'Kan Kol Hamusica',
     streamUrls: [
       {
         url: 'https://kankolhamusica.media.kan.org.il/hls/live/2024817/2024817/playlist.m3u8',
+        liveTrackDataUrl: 'https://www.kan.org.il/api/arc-cloud/get-live-track-data?channelId=5',
         protocol: 'hls',
       },
     ],
@@ -56,12 +59,13 @@ export const stations: RadioStations = [
       favorite: false,
     },
   },
-  {
+  'kan-gimmel': {
     id: 'kan-gimmel',
     name: 'Kan Gimmel',
     streamUrls: [
       {
         url: 'https://kangimmel.media.kan.org.il/hls/live/2024813/2024813/playlist.m3u8',
+        liveTrackDataUrl: 'https://www.kan.org.il/api/arc-cloud/get-live-track-data?channelId=9',
         protocol: 'hls',
       },
     ],
@@ -73,7 +77,7 @@ export const stations: RadioStations = [
       favorite: false,
     },
   },
-  {
+  galgalatz: {
     id: 'galgalatz',
     name: 'Galgalatz',
     streamUrls: [
@@ -90,7 +94,7 @@ export const stations: RadioStations = [
       favorite: false,
     },
   },
-  {
+  galatz: {
     id: 'galatz',
     name: 'Galatz',
     streamUrls: [
@@ -107,4 +111,4 @@ export const stations: RadioStations = [
       favorite: false,
     },
   },
-];
+};
