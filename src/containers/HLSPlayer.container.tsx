@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-import Hls from 'hls.js';
 import { Silver } from 'react-dial-knob';
 import { PlayRadioButton } from '../components/PlayRadioButton.view';
 import { stations } from '../constants/radioStations';
