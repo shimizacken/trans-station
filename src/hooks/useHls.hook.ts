@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Hls from 'hls.js';
 import type { RadioStation } from '../types/station.types';
 
@@ -7,30 +7,41 @@ export const useHls = (
   currentStation: RadioStation,
   volume: number
 ) => {
-  const [hls, setHls] = useState<Hls>();
+  // const [hls, setHls] = useState<Hls>();
+  const hls = useRef<Hls | null>(null);
 
   useEffect(() => {
-    const hls = new Hls();
-    setHls(hls);
+    if (hls.current) {
+      hls.current.stopLoad();
+      hls.current.detachMedia();
+      hls.current.destroy();
+    }
+
+    hls.current = new Hls();
+    // setHls(hls.current);
 
     if (videoRef.current) {
       const hlsUrl = currentStation.streamUrls[0].url;
-
+      console.log('🚀 ~ useEffect ~ hlsUrl:', hlsUrl);
       if (Hls.isSupported()) {
-        hls.loadSource(hlsUrl);
-        hls.attachMedia(videoRef.current);
+        hls.current.loadSource(hlsUrl);
+        hls.current.attachMedia(videoRef.current);
 
-        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+        hls.current.on(Hls.Events.BUFFER_APPENDED, () => {
+          if (videoRef.current) {
+            videoRef.current.play().catch((err) => {
+              console.warn('Playback failed:', err);
+            });
+          }
+        });
+
+        hls.current.on(Hls.Events.MANIFEST_PARSED, () => {
           if (videoRef.current) {
             videoRef.current.volume = volume;
           }
         });
 
-        hls.on(Hls.Events.MANIFEST_PARSED, (event, data) => {
-          // Each level includes bitrate, resolution, codecs, etc.
-        });
-
-        hls.on(Hls.Events.FRAG_PARSING_METADATA, (event, data) => {
+        hls.current.on(Hls.Events.FRAG_PARSING_METADATA, (event, data) => {
           console.log('🚀 ~ hls.on ~ data:', data);
           data.samples.forEach((sample) => {
             const textDecoder = new TextDecoder('utf-8');
@@ -45,5 +56,5 @@ export const useHls = (
     }
   }, [videoRef.current, currentStation]);
 
-  return hls;
+  return hls.current;
 };
