@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import Hls from 'hls.js';
 import type { RadioStation } from '../types/station.types';
 
@@ -7,7 +7,6 @@ export const useHls = (
   currentStation: RadioStation,
   volume: number
 ) => {
-  // const [hls, setHls] = useState<Hls>();
   const hls = useRef<Hls | null>(null);
 
   useEffect(() => {
@@ -18,7 +17,6 @@ export const useHls = (
     }
 
     hls.current = new Hls();
-    // setHls(hls.current);
 
     if (videoRef.current) {
       const hlsUrl = currentStation.streamUrls[0].url;

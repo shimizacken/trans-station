@@ -1,7 +1,7 @@
 import React from 'react';
 import { RadioStationId, RadioStations } from '../types/station.types';
 import { StationButtons } from '../components/StationButtons.view';
-import { stationChanged } from '../signals/stationChanged.signal';
+
 import { useLoadPersistSelectedRadioStation } from '../hooks/useLoadPersistSelectedRadioStation';
 
 export const StationButtonsContainer: React.FC<{
@@ -13,7 +13,6 @@ export const StationButtonsContainer: React.FC<{
 
   const handleStationClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     const stationId = event.currentTarget.id as RadioStationId;
-    stationChanged.emit(stationId);
     setSelectedStation(stationId);
     onClick(stationId);
   };

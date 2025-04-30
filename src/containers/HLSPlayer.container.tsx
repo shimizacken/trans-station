@@ -1,10 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { Silver } from 'react-dial-knob';
-import { PlayRadioButton } from '../components/PlayRadioButton.view';
 import { stations } from '../constants/radioStations';
 import { useMediaPlayerEvents } from '../hooks/useMediaPlayerEvents.hook';
 import { StationButtonsContainer } from './StationButtons.container';
-import { stationChanged } from '../signals/stationChanged.signal';
 import { mediaElementEventsNeutron } from '../signals/mediaElementEvents.signal';
 import { useLoadPersistSelectedRadioStation } from '../hooks/useLoadPersistSelectedRadioStation';
 import { useHls } from '../hooks/useHls.hook';
@@ -16,17 +14,7 @@ export const HLSPlayerContainer: React.FC = () => {
   const [volume, setVolume] = React.useState(0.8);
   const station = useLoadPersistSelectedRadioStation(stations);
   const [currentStation, setCurrentStation] = React.useState(station);
-  const hls = useHls(videoRef, currentStation, volume);
-
-  useEffect(() => {
-    stationChanged.watch((stationId) => {
-      if (stationId) {
-        const station = stations[stationId] || stations['kan-bet'];
-        setCurrentStation(station);
-        localStorage.setItem('currentStation', JSON.stringify(station.id));
-      }
-    });
-  }, []);
+  useHls(videoRef, currentStation, volume);
 
   useEffect(() => {
     document.title = `${currentStation.name}`;
@@ -35,27 +23,13 @@ export const HLSPlayerContainer: React.FC = () => {
   const handlePlayPause = (stationId: RadioStationId) => {
     if (videoRef.current) {
       if (videoRef.current.paused) {
-        // hls?.loadSource(currentStation.streamUrls[0].url);
-
         videoRef.current.play();
       } else {
         videoRef.current.pause();
       }
+
       setCurrentStation(stations[stationId]);
       localStorage.setItem('currentStation', JSON.stringify(stations[stationId].id));
-
-      // if (stationId === currentStation.id) {
-      //   if (videoRef.current.paused) {
-      //     hls?.loadSource(currentStation.streamUrls[0].url);
-      //     videoRef.current.play();
-      //   } else {
-      //     videoRef.current.pause();
-      //   }
-      // } else {
-      //   videoRef.current.pause();
-      //   hls?.loadSource(stations[stationId]?.streamUrls[0].url);
-      //   videoRef.current.play();
-      // }
     }
   };
 
