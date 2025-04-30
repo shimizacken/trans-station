@@ -28,7 +28,7 @@ export const useHls = (
         hls.current.attachMedia(videoRef.current);
 
         hls.current.on(Hls.Events.BUFFER_APPENDED, () => {
-          if (videoRef.current) {
+          if (videoRef.current && videoRef.current.paused) {
             videoRef.current.play().catch((err) => {
               console.warn('Playback failed:', err);
             });
