@@ -56,7 +56,6 @@
 }
 
 // https://codepen.io/yuhomyan/pen/jOqvjZq
-.play-radio-button,
 .radio-station-button {
   width: 130px;
   color: #262626;
@@ -108,10 +107,15 @@
     -webkit-transform: translateY(2px);
     transform: translateY(2px);
   }
+}
 
-  &.playing {
+.radio-station-button-wrapper-selected {
+  .playing {
     box-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff;
-    // box-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 20px #ff0000;
+  }
+
+  .paused {
+    box-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 20px #ff0000;
   }
 }
 
