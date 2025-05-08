@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Silver } from 'react-dial-knob';
 import { stations } from '../constants/radioStations';
 import { useMediaPlayerEvents } from '../hooks/useMediaPlayerEvents.hook';
@@ -11,9 +11,9 @@ import { RadioStationId } from '../types/station.types';
 export const HLSPlayerContainer: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const { isPlaying, isLoading } = useMediaPlayerEvents(videoRef);
-  const [volume, setVolume] = React.useState(0.8);
+  const [volume, setVolume] = useState(0.8);
   const station = useLoadPersistSelectedRadioStation(stations);
-  const [currentStation, setCurrentStation] = React.useState(station);
+  const [currentStation, setCurrentStation] = useState(station);
   useHls(videoRef, currentStation, volume);
 
   useEffect(() => {
