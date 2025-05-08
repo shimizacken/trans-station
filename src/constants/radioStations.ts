@@ -111,4 +111,38 @@ export const stations: RadioStations = {
       favorite: false,
     },
   },
+  kesem: {
+    id: 'kesem',
+    name: 'Kesem 106',
+    streamUrls: [
+      {
+        url: 'https://cdn.cybercdn.live/Kessem_Radio/live/icecast.audio',
+        protocol: 'http',
+      },
+    ],
+    logoUrl: 'src/images/logos/galatz.png',
+    description: 'Galatz is an Israeli radio station that plays news.',
+    genre: 'Music',
+    country: 'Israel',
+    userPreferences: {
+      favorite: false,
+    },
+  },
+  // hevrati: {
+  //   id: 'hevrati',
+  //   name: 'Hevrati',
+  //   streamUrls: [
+  //     {
+  //       url: 'https://live.ecast.co.il/stream/hevrati',
+  //       protocol: 'http',
+  //     },
+  //   ],
+  //   logoUrl: 'src/images/logos/galatz.png',
+  //   description: 'Galatz is an Israeli radio station that plays news.',
+  //   genre: 'Music',
+  //   country: 'Israel',
+  //   userPreferences: {
+  //     favorite: false,
+  //   },
+  // },
 };

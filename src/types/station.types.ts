@@ -19,7 +19,9 @@ export type RadioStationId =
   | 'kan-kol-hamusica'
   | 'kan-gimmel'
   | 'galgalatz'
-  | 'galatz';
+  | 'galatz'
+  | 'kesem';
+// | 'hevrati';
 
 export type RadioStation = {
   id: RadioStationId;
