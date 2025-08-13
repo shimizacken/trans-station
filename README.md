@@ -6,9 +6,8 @@ It’s built with a focus on clean architecture, modular design, and maintainabi
 🎯 **Live Demo:** [https://transtationradio.netlify.app](https://transtationradio.netlify.app)
 
 ---
-
 <p align="center">
-  <img width="150" src="https://github.com/user-attachments/assets/eb083bdf-f6a8-4570-b518-823a2ad07386" />
+  <img width="280" src="https://github.com/user-attachments/assets/10f2471c-8a7d-428b-bb2a-bc6e25d9863c" />
 </p>
 
 ---
@@ -139,3 +138,10 @@ Utils functions should be used as generic reusable tools. As such, it should be 
 - **Media Streaming:** hls.js
 - **State & Signals:** Neutron
 - **Tooling:** Parcel, Storybook, Jest
+
+---
+
+
+<p align="center">
+  <img width="150" src="https://github.com/user-attachments/assets/eb083bdf-f6a8-4570-b518-823a2ad07386" />
+</p>
