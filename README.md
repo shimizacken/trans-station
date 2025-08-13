@@ -13,6 +13,16 @@ It’s built with a focus on clean architecture, modular design, and maintainabi
 
 ---
 
+## 📑 Table of Contents
+1. [Getting Started](#-getting-started)
+2. [Project Structure](#-project-structure)
+3. [Features](#-features)
+4. [Naming Conventions](#naming-conventions)
+5. [Folder Structure](#folder-structure)
+6. [Utils](#utils)
+   - [Best Practices for Writing Util Functions](#best-practices-for-writing-util-functions)
+7. [Tech Stack](#-tech-stack)
+
 
 ## 🚀 Getting Started
 
@@ -33,13 +43,6 @@ npm test
 npm run storybook
 ```
 
-## 📂 Project Structure
-- `components/` – UI components for playback, station listing, etc.
-- `views/` – Stateless presentational components
-- `containers/` – Components managing logic and state
-- `hooks/` – Custom hooks for player controls and station management
-- `utils/` – Helper functions
-- 
 ## ✨ Features
 - 🎵 Stream online radio stations using **hls.js**
 - ⚡ Event-driven architecture powered by **Neutron**
@@ -64,7 +67,15 @@ npm run storybook
 
 ---
 
-## Folder structure
+
+## 🧩 Main project entities
+- `components/` – UI components for playback, station listing, etc.
+- `views/` – Stateless presentational components
+- `containers/` – Components managing logic and state
+- `hooks/` – Custom hooks for player controls and station management
+- `utils/` – Helper functions
+- 
+## 📂 Folder structure
 
 Flat folder structure:
 
@@ -88,7 +99,7 @@ Flat folder structure:
 └── ...
 ```
 
-## Naming conventions
+## ✏️ Naming conventions
 
 | Type                | Filename                      | Suffix  | Example              |
 | ------------------- | ----------------------------- | ------- | --------------------- |
@@ -111,7 +122,7 @@ Flat folder structure:
 | SVG                 | dash-separated                | \*.svg  | logo-icon.svg         |
 
 
-## Utils
+## 🛠️ Utils
 
 Utils functions should be used as generic reusable tools. As such, it should be simple to use them across apps and packages, without the need to have any dependencies that they might required.
 
@@ -123,7 +134,7 @@ Utils functions should be used as generic reusable tools. As such, it should be 
 - All dependencies are passed as args
 - Pass the minimum required args
 
-## 🛠 Tech Stack
+## ⚙️ Tech Stack
 - **Frontend:** TypeScript, HTML, CSS
 - **Media Streaming:** hls.js
 - **State & Signals:** Neutron
