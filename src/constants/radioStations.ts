@@ -128,6 +128,40 @@ export const stations: RadioStations = {
       favorite: false,
     },
   },
+  'radio-france': {
+    id: 'radio-france',
+    name: 'Radio france',
+    streamUrls: [
+      {
+        url: 'https://stream.radiofrance.fr/fip/fip_lofi.m3u8?id=radiofrance',
+        protocol: 'hls',
+      },
+    ],
+    logoUrl: '',
+    description: 'Galatz is an Israeli radio station that plays news.',
+    genre: 'Music',
+    country: 'France',
+    userPreferences: {
+      favorite: false,
+    },
+  },
+  'radio-france-reggae': {
+    id: 'radio-france-reggae',
+    name: 'Radio france reggae',
+    streamUrls: [
+      {
+        url: 'https://stream.radiofrance.fr/fipreggae/fipreggae.m3u8?id=radiofrance',
+        protocol: 'hls',
+      },
+    ],
+    logoUrl: '',
+    description: 'Galatz is an Israeli radio station that plays news.',
+    genre: 'Music',
+    country: 'France',
+    userPreferences: {
+      favorite: false,
+    },
+  },
   // hevrati: {
   //   id: 'hevrati',
   //   name: 'Hevrati',

@@ -9,23 +9,28 @@ import { useHls } from '../hooks/useHls.hook';
 import { RadioStationId } from '../types/station.types';
 
 export const HLSPlayerContainer: React.FC = () => {
+  const [isPaused, setIsPaused] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const { isPlaying, isLoading } = useMediaPlayerEvents(videoRef);
   const [volume, setVolume] = useState(0.8);
   const station = useLoadPersistSelectedRadioStation(stations);
   const [currentStation, setCurrentStation] = useState(station);
-  useHls(videoRef, currentStation, volume);
+  useHls(videoRef, currentStation, volume, isPaused);
 
   useEffect(() => {
     document.title = `${currentStation.name}`;
   }, [currentStation]);
 
   const handlePlayPause = (stationId: RadioStationId) => {
+    const isCurrentStation = currentStation.id === stationId;
+
     if (videoRef.current) {
       if (videoRef.current.paused) {
         videoRef.current.play();
+        setIsPaused(false);
       } else {
         videoRef.current.pause();
+        setIsPaused(true);
       }
 
       setCurrentStation(stations[stationId]);
