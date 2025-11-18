@@ -5,7 +5,8 @@ import type { RadioStation } from '../types/station.types';
 export const useHls = (
   videoRef: React.RefObject<HTMLVideoElement | null>,
   currentStation: RadioStation,
-  volume: number
+  volume: number,
+  isPaused: boolean = false
 ) => {
   const hls = useRef<Hls | null>(null);
 
@@ -20,13 +21,13 @@ export const useHls = (
 
     if (videoRef.current) {
       const hlsUrl = currentStation.streamUrls[0].url;
-      console.log('🚀 ~ useEffect ~ hlsUrl:', hlsUrl);
+
       if (Hls.isSupported()) {
         hls.current.loadSource(hlsUrl);
         hls.current.attachMedia(videoRef.current);
 
         hls.current.on(Hls.Events.BUFFER_APPENDED, () => {
-          if (videoRef.current && videoRef.current.paused) {
+          if (videoRef.current && videoRef.current.paused && !isPaused) {
             videoRef.current.play().catch((err) => {
               console.warn('Playback failed:', err);
             });
@@ -52,7 +53,7 @@ export const useHls = (
         videoRef.current.src = hlsUrl;
       }
     }
-  }, [videoRef.current, currentStation]);
+  }, [videoRef.current, currentStation, isPaused]);
 
   return hls.current;
 };

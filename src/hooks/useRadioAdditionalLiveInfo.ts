@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { RadioStation } from '../types/station.types';
+import type { RadioStation } from '../types/station.types';
 
 export const useRadioAdditionalLiveInfo = (radioStation: RadioStation) => {
   const [radioLiveInfo, setRadioLiveInfo] = useState(null);
+
   useEffect(() => {
     const liveTrackDataUrl = radioStation.streamUrls[0].liveTrackDataUrl;
 

@@ -13,7 +13,7 @@ export const StationPage: React.FC = () => {
         <AudioPlayerContainer />
       </main>
       <Stack>
-        <LoggerContainer />
+        {process.env.NODE_ENV === 'development' && <LoggerContainer />}
         <Footer />
       </Stack>
     </>
