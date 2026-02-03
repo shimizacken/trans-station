@@ -6,7 +6,7 @@ export const stations: RadioStations = {
     name: 'Kan Bet',
     streamUrls: [
       {
-        url: 'https://kanbet.media.kan.org.il/hls/live/2024811/2024811/playlist.m3u8',
+        url: 'https://playerservices.streamtheworld.com/api/livestream-redirect/KAN_BET.mp3',
         liveTrackDataUrl: 'https://www.kan.org.il/api/arc-cloud/get-live-track-data?channelId=8',
         protocol: 'hls',
       },
