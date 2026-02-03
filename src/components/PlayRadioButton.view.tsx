@@ -9,6 +9,6 @@ export const PlayRadioButton: React.FC<{
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }> = ({ isPlaying, isLoading, onClick, id, text, altText }) => (
   <button id={id} onClick={onClick} className={`play-radio-button ${isPlaying ? 'playing' : ''}`}>
-    {isLoading ? ' Loading...' : isPlaying ? altText : text}
+    {text}
   </button>
 );
