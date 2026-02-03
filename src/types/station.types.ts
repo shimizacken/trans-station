@@ -20,9 +20,9 @@ export type RadioStationId =
   | 'kan-gimmel'
   | 'galgalatz'
   | 'galatz'
-  | 'kesem'
-  | 'radio-france'
-  | 'radio-france-reggae';
+  | 'kesem';
+// | 'radio-france'
+// | 'radio-france-reggae';
 // | 'hevrati';
 
 export type RadioStation = {
