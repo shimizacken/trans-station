@@ -53,7 +53,6 @@ export const AudioPlayerContainer: React.FC = () => {
         <StationButtonsContainer stations={stations} onClick={handlePlayPause} />
         <VolumeSliderContainer ref={audioRef} />
         <AudioPlayer ref={audioRef} streamUrl={stations[selectedStation].streamUrls[0].url} />
-        {/* <HLSPlayerContainer /> */}
       </div>
     </div>
   );
