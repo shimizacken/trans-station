@@ -180,6 +180,39 @@ export const stations: RadioStations = {
     userPreferences: {
       favorite: false,
     },
-    hide: true,
+  },
+  '103fm': {
+    id: '103fm',
+    name: '103fm',
+    streamUrls: [
+      {
+        url: 'https://cdn.cybercdn.live/103FM/Live/icecast.audio',
+        protocol: 'http',
+      },
+    ],
+    logoUrl: 'src/images/logos/galatz.png',
+    description: 'Galatz is an Israeli radio station that plays news.',
+    genre: 'News',
+    country: 'Israel',
+    userPreferences: {
+      favorite: false,
+    },
+  },
+  '102fm': {
+    id: '102fm',
+    name: '102fm',
+    streamUrls: [
+      {
+        url: 'https://102.livecdn.biz/102fm_mp3',
+        protocol: 'http',
+      },
+    ],
+    logoUrl: 'src/images/logos/galatz.png',
+    description: 'Galatz is an Israeli radio station that plays news.',
+    genre: 'News',
+    country: 'Israel',
+    userPreferences: {
+      favorite: false,
+    },
   },
 };

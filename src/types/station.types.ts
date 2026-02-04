@@ -23,7 +23,9 @@ export type RadioStationId =
   | 'kesem'
   | 'radio-france'
   | 'radio-france-reggae'
-  | 'hevrati';
+  | 'hevrati'
+  | '103fm'
+  | '102fm';
 
 export type RadioStation = {
   id: RadioStationId;
