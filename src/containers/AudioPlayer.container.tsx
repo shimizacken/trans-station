@@ -5,6 +5,7 @@ import { useSpaceKey } from '../hooks/useSpaceKey.hook';
 import { useMediaPlayerEvents } from '../hooks/useMediaPlayerEvents.hook';
 import { PlayRadioButton } from '../components/PlayRadioButton.view';
 import { VolumeSliderContainer } from './VolumeSlider.container';
+import { StationButtonsContainer } from './StationButtons.container';
 // import { HLSPlayerContainer } from './HLSPlayer.container';
 
 /*
@@ -35,10 +36,11 @@ export const AudioPlayerContainer: React.FC = () => {
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+        <StationButtonsContainer stations={stations} onClick={handlePlayPause} />
         <VolumeSliderContainer ref={audioRef} />
         <AudioPlayer ref={audioRef} streamUrl={stations['kan-bet'].streamUrls[0].url} />
         {/* <HLSPlayerContainer /> */}
-        <div style={{ marginTop: '10px' }}>
+        {/* <div style={{ marginTop: '10px' }}>
           <PlayRadioButton
             id={stations['kan-bet'].id}
             onClick={handlePlayPause}
@@ -46,7 +48,7 @@ export const AudioPlayerContainer: React.FC = () => {
             isLoading={isLoading}
             text={stations['kan-bet'].name}
           />
-        </div>
+        </div> */}
       </div>
     </div>
   );
