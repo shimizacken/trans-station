@@ -42,7 +42,6 @@ export const AudioPlayerContainer: React.FC = () => {
   useEffect(() => {
     stationSelection.watch((selectedStationId) => {
       if (selectedStationId) {
-        console.log('🚀 ~ AudioPlayerContainer ~ selectedStationId:', selectedStationId);
         setSelectedStation(selectedStationId);
       }
     });
