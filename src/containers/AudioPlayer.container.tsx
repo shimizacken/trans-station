@@ -1,12 +1,16 @@
-import React, { useRef } from 'react';
-import { AudioPlayer } from '../components/AudioPlayer.view';
+import React, { useEffect, useRef, useState } from 'react';
+
 import { stations } from '../constants/radioStations';
+
 import { useSpaceKey } from '../hooks/useSpaceKey.hook';
 import { useMediaPlayerEvents } from '../hooks/useMediaPlayerEvents.hook';
-import { PlayRadioButton } from '../components/PlayRadioButton.view';
+
 import { VolumeSliderContainer } from './VolumeSlider.container';
 import { StationButtonsContainer } from './StationButtons.container';
-// import { HLSPlayerContainer } from './HLSPlayer.container';
+import { AudioPlayer } from '../components/AudioPlayer.view';
+import { stationSelection } from '../signals/stationSelection.signal';
+import { useLoadPersistSelectedRadioStation } from '../hooks/useLoadPersistSelectedRadioStation';
+import { RadioStationId } from '../types/station.types';
 
 /*
  * AudioPlayerContainer
@@ -18,6 +22,8 @@ import { StationButtonsContainer } from './StationButtons.container';
  */
 export const AudioPlayerContainer: React.FC = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const station = useLoadPersistSelectedRadioStation(stations);
+  const [selectedStation, setSelectedStation] = useState<RadioStationId>(station.id);
   const { isPlaying, isLoading } = useMediaPlayerEvents(audioRef);
 
   const handlePlayPause = () => {
@@ -33,22 +39,22 @@ export const AudioPlayerContainer: React.FC = () => {
 
   useSpaceKey(handlePlayPause);
 
+  useEffect(() => {
+    stationSelection.watch((selectedStationId) => {
+      if (selectedStationId) {
+        console.log('🚀 ~ AudioPlayerContainer ~ selectedStationId:', selectedStationId);
+        setSelectedStation(selectedStationId);
+      }
+    });
+  }, []);
+
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
         <StationButtonsContainer stations={stations} onClick={handlePlayPause} />
         <VolumeSliderContainer ref={audioRef} />
-        <AudioPlayer ref={audioRef} streamUrl={stations['kan-bet'].streamUrls[0].url} />
+        <AudioPlayer ref={audioRef} streamUrl={stations[selectedStation].streamUrls[0].url} />
         {/* <HLSPlayerContainer /> */}
-        {/* <div style={{ marginTop: '10px' }}>
-          <PlayRadioButton
-            id={stations['kan-bet'].id}
-            onClick={handlePlayPause}
-            isPlaying={isPlaying}
-            isLoading={isLoading}
-            text={stations['kan-bet'].name}
-          />
-        </div> */}
       </div>
     </div>
   );

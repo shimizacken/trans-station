@@ -7,12 +7,12 @@ export const stations: RadioStations = {
     streamUrls: [
       {
         url: 'https://playerservices.streamtheworld.com/api/livestream-redirect/KAN_BET.mp3',
-        liveTrackDataUrl: 'https://www.kan.org.il/api/arc-cloud/get-live-track-data?channelId=8',
-        protocol: 'hls',
+        protocol: 'http',
       },
       {
-        url: 'https://kanliveicy.media.kan.org.il/icy/kanbet_mp3',
-        protocol: 'http',
+        url: 'https://playerservices.streamtheworld.com/api/livestream-redirect/KAN_BET.mp3',
+        liveTrackDataUrl: 'https://www.kan.org.il/api/arc-cloud/get-live-track-data?channelId=8',
+        protocol: 'hls',
       },
     ],
     logoUrl: 'src/images/logos/reshet-bet.png',
@@ -28,9 +28,9 @@ export const stations: RadioStations = {
     name: 'Kan 88',
     streamUrls: [
       {
-        url: 'https://kan88.media.kan.org.il/hls/live/2024812/2024812/playlist.m3u8',
+        url: 'https://22653.live.streamtheworld.com/KAN_88.mp3?dist=rlive',
         liveTrackDataUrl: 'https://www.kan.org.il/api/arc-cloud/get-live-track-data?channelId=4',
-        protocol: 'hls',
+        protocol: 'http',
       },
     ],
     logoUrl: 'src/images/logos/reshet-bet.png',
@@ -46,9 +46,9 @@ export const stations: RadioStations = {
     name: 'Kan Kol Hamusica',
     streamUrls: [
       {
-        url: 'https://kankolhamusica.media.kan.org.il/hls/live/2024817/2024817/playlist.m3u8',
+        url: 'https://27823.live.streamtheworld.com/KAN_KOL_HAMUSICA.mp3',
         liveTrackDataUrl: 'https://www.kan.org.il/api/arc-cloud/get-live-track-data?channelId=5',
-        protocol: 'hls',
+        protocol: 'http',
       },
     ],
     logoUrl: 'src/images/logos/reshet-bet.png',
@@ -64,9 +64,9 @@ export const stations: RadioStations = {
     name: 'Kan Gimmel',
     streamUrls: [
       {
-        url: 'https://kangimmel.media.kan.org.il/hls/live/2024813/2024813/playlist.m3u8',
+        url: 'https://playerservices.streamtheworld.com/api/livestream-redirect/KAN_GIMMEL.mp3',
         liveTrackDataUrl: 'https://www.kan.org.il/api/arc-cloud/get-live-track-data?channelId=9',
-        protocol: 'hls',
+        protocol: 'http',
       },
     ],
     logoUrl: 'src/images/logos/reshet-bet.png',
@@ -82,7 +82,7 @@ export const stations: RadioStations = {
     name: 'Galgalatz',
     streamUrls: [
       {
-        url: 'https://glzwizzlv.bynetcdn.com/glglz_mp3?',
+        url: 'https://glzwizzlv.bynetcdn.com/glglz_mp3',
         protocol: 'http',
       },
     ],
@@ -99,7 +99,7 @@ export const stations: RadioStations = {
     name: 'Galatz',
     streamUrls: [
       {
-        url: 'https://glzwizzlv.bynetcdn.com/glz_mp3?',
+        url: 'https://glzwizzlv.bynetcdn.com/glz_mp3?awCollectionId=misc&awEpisodeId=glz',
         protocol: 'http',
       },
     ],
