@@ -20,10 +20,10 @@ export type RadioStationId =
   | 'kan-gimmel'
   | 'galgalatz'
   | 'galatz'
-  | 'kesem';
-// | 'radio-france'
-// | 'radio-france-reggae';
-// | 'hevrati';
+  | 'kesem'
+  | 'radio-france'
+  | 'radio-france-reggae'
+  | 'hevrati';
 
 export type RadioStation = {
   id: RadioStationId;
@@ -35,6 +35,7 @@ export type RadioStation = {
   country: string;
   userPreferences?: StationUserPreferences;
   status?: MediaElementStatus;
+  hide?: boolean;
 };
 
 export type RadioStations = {

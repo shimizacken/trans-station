@@ -18,15 +18,17 @@ export const StationButtons: React.FC<{
       width: '350px',
     }}
   >
-    {Object.values(stations).map((station) => (
-      <RadioStationButton
-        key={station.id}
-        id={station.id}
-        isSelected={station.id === selectedStation}
-        isStationPlaying={isStationPlaying}
-        text={station.name}
-        onClick={handleStationClick}
-      />
-    ))}
+    {Object.values(stations)
+      .filter((station) => station.hide !== true)
+      .map((station) => (
+        <RadioStationButton
+          key={station.id}
+          id={station.id}
+          isSelected={station.id === selectedStation}
+          isStationPlaying={isStationPlaying}
+          text={station.name}
+          onClick={handleStationClick}
+        />
+      ))}
   </div>
 );
