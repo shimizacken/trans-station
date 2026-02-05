@@ -3,7 +3,7 @@ import { RadioStations } from '../types/station.types';
 export const stations: RadioStations = {
   'kan-bet': {
     id: 'kan-bet',
-    name: 'Kan Bet',
+    name: `'כאן ב`,
     streamUrls: [
       {
         url: 'https://playerservices.streamtheworld.com/api/livestream-redirect/KAN_BET.mp3',
@@ -25,7 +25,7 @@ export const stations: RadioStations = {
   },
   'kan-88': {
     id: 'kan-88',
-    name: 'Kan 88',
+    name: `כאן 88`,
     streamUrls: [
       {
         url: 'https://22653.live.streamtheworld.com/KAN_88.mp3?dist=rlive',
@@ -43,7 +43,7 @@ export const stations: RadioStations = {
   },
   'kan-kol-hamusica': {
     id: 'kan-kol-hamusica',
-    name: 'Kan Kol Hamusica',
+    name: 'קול המוזיקה',
     streamUrls: [
       {
         url: 'https://27823.live.streamtheworld.com/KAN_KOL_HAMUSICA.mp3',
@@ -61,7 +61,7 @@ export const stations: RadioStations = {
   },
   'kan-gimmel': {
     id: 'kan-gimmel',
-    name: 'Kan Gimmel',
+    name: `כאן גימל`,
     streamUrls: [
       {
         url: 'https://playerservices.streamtheworld.com/api/livestream-redirect/KAN_GIMMEL.mp3',
@@ -79,7 +79,7 @@ export const stations: RadioStations = {
   },
   galgalatz: {
     id: 'galgalatz',
-    name: 'Galgalatz',
+    name: 'גלגלצ',
     streamUrls: [
       {
         url: 'https://glzwizzlv.bynetcdn.com/glglz_mp3',
@@ -96,7 +96,7 @@ export const stations: RadioStations = {
   },
   galatz: {
     id: 'galatz',
-    name: 'Galatz',
+    name: 'גלצ',
     streamUrls: [
       {
         url: 'https://glzwizzlv.bynetcdn.com/glz_mp3?awCollectionId=misc&awEpisodeId=glz',
@@ -113,7 +113,7 @@ export const stations: RadioStations = {
   },
   kesem: {
     id: 'kesem',
-    name: 'Kesem 106',
+    name: 'קסם 106',
     streamUrls: [
       {
         url: 'https://cdn.cybercdn.live/Kessem_Radio/live/icecast.audio',
@@ -166,7 +166,7 @@ export const stations: RadioStations = {
   },
   hevrati: {
     id: 'hevrati',
-    name: 'Hevrati',
+    name: 'החברתי',
     streamUrls: [
       {
         url: 'https://live.ecast.co.il/stream/hevrati',
