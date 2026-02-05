@@ -1,5 +1,6 @@
 import { createNeutron } from 'neutron';
-import { RadioStationId } from '../types/station.types';
+
+import type { RadioStationId } from '../types/station.types';
 
 export type StationSelection = {
   next: RadioStationId;
