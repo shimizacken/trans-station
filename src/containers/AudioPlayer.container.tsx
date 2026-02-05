@@ -4,13 +4,16 @@ import { stations } from '../constants/radioStations';
 
 import { useSpaceKey } from '../hooks/useSpaceKey.hook';
 import { useMediaPlayerEvents } from '../hooks/useMediaPlayerEvents.hook';
+import { useLoadPersistSelectedRadioStation } from '../hooks/useLoadPersistSelectedRadioStation';
+
+import { StationSelection, stationSelection } from '../signals/stationSelection.signal';
 
 import { VolumeSliderContainer } from './VolumeSlider.container';
 import { StationButtonsContainer } from './StationButtons.container';
+
 import { AudioPlayer } from '../components/AudioPlayer.view';
-import { StationSelection, stationSelection } from '../signals/stationSelection.signal';
-import { useLoadPersistSelectedRadioStation } from '../hooks/useLoadPersistSelectedRadioStation';
-import { RadioStationId } from '../types/station.types';
+
+import type { RadioStationId } from '../types/station.types';
 
 let currentStationSelection = {} as unknown as StationSelection;
 
