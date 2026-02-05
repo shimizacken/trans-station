@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { RadioStationId, RadioStations } from '../types/station.types';
-import { StationButtons } from '../components/StationButtons.view';
 
-import { useLoadPersistSelectedRadioStation } from '../hooks/useLoadPersistSelectedRadioStation';
 import { mediaElementStatus } from '../signals/mediaElementStatus.signal';
 import { stationSelection } from '../signals/stationSelection.signal';
+
+import { useLoadPersistSelectedRadioStation } from '../hooks/useLoadPersistSelectedRadioStation';
+
+import { StationButtons } from '../components/StationButtons.view';
+
+import type { RadioStationId, RadioStations } from '../types/station.types';
 
 export const StationButtonsContainer: React.FC<{
   stations: RadioStations;
@@ -24,7 +27,6 @@ export const StationButtonsContainer: React.FC<{
     stationSelection.emit({ next: stationId, prev: selectedStation });
     setSelectedStation(stationId);
     localStorage.setItem('currentStation', JSON.stringify(stations[stationId].id));
-    // onClick(stationId);
   };
 
   return (
