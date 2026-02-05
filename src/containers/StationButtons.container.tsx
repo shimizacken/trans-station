@@ -8,8 +8,7 @@ import { stationSelection } from '../signals/stationSelection.signal';
 
 export const StationButtonsContainer: React.FC<{
   stations: RadioStations;
-  onClick: (stationId: RadioStationId) => void;
-}> = ({ stations, onClick }) => {
+}> = ({ stations }) => {
   const station = useLoadPersistSelectedRadioStation(stations);
   const [selectedStation, setSelectedStation] = useState<RadioStationId>(station.id);
   const [isStationPlaying, setIsStationPlaying] = useState(false);
@@ -25,7 +24,7 @@ export const StationButtonsContainer: React.FC<{
     stationSelection.emit({ next: stationId, prev: selectedStation });
     setSelectedStation(stationId);
     localStorage.setItem('currentStation', JSON.stringify(stations[stationId].id));
-    onClick(stationId);
+    // onClick(stationId);
   };
 
   return (

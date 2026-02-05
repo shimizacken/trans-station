@@ -11,7 +11,6 @@ import { AudioPlayer } from '../components/AudioPlayer.view';
 import { StationSelection, stationSelection } from '../signals/stationSelection.signal';
 import { useLoadPersistSelectedRadioStation } from '../hooks/useLoadPersistSelectedRadioStation';
 import { RadioStationId } from '../types/station.types';
-import { mediaElementStatus } from '../signals/mediaElementStatus.signal';
 
 let currentStationSelection = {} as unknown as StationSelection;
 
@@ -56,20 +55,16 @@ export const AudioPlayerContainer: React.FC = () => {
       if (stationSelectionArgs) {
         currentStationSelection = stationSelectionArgs;
         setSelectedStation(stationSelectionArgs.next);
-      }
-    });
-  }, []);
 
-  useEffect(() => {
-    mediaElementStatus.watch((log) => {
-      // console.log('🚀 ~ AudioPlayerContainer ~ log:', log);
+        handlePlayPause();
+      }
     });
   }, []);
 
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
-        <StationButtonsContainer stations={stations} onClick={handlePlayPause} />
+        <StationButtonsContainer stations={stations} />
         <VolumeSliderContainer ref={audioRef} />
         <AudioPlayer ref={audioRef} streamUrl={stations[selectedStation].streamUrls[0].url} />
       </div>
