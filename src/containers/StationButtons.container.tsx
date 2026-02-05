@@ -22,8 +22,8 @@ export const StationButtonsContainer: React.FC<{
 
   const handleStationClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     const stationId = event.currentTarget.id as RadioStationId;
+    stationSelection.emit({ next: stationId, prev: selectedStation });
     setSelectedStation(stationId);
-    stationSelection.emit(stationId);
     localStorage.setItem('currentStation', JSON.stringify(stations[stationId].id));
     onClick(stationId);
   };

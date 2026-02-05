@@ -3,7 +3,13 @@ export type StationUserPreferences = {
   lastPlayed?: Date;
 };
 
-export type MediaElementStatus = 'paused' | 'playing' | 'stalled' | 'error';
+export type MediaElementStatus =
+  | 'paused'
+  | 'playing'
+  | 'stalled'
+  | 'error'
+  | 'offline'
+  | 'load-start';
 
 export type SteamProtocol = 'hls' | 'http';
 

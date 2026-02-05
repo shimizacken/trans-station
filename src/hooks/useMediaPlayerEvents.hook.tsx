@@ -41,6 +41,7 @@ export const useMediaPlayerEvents = (
       setIsLoading(true);
       setIsError(false);
       setIsPlaying(false);
+      mediaElementStatus.emit('load-start');
     };
 
     const handleCanPlay = () => {
@@ -74,6 +75,7 @@ export const useMediaPlayerEvents = (
     const handleOffline = () => {
       setIsLoading(true);
       setIsPlaying(false);
+      mediaElementStatus.emit('offline');
     };
 
     const handleError = () => {
@@ -94,6 +96,7 @@ export const useMediaPlayerEvents = (
     };
 
     const handleMediaElementEvent = (event: Event) => {
+      console.log('🚀 ~ handleMediaElementEvent ~ event:', event?.type);
       events[event.type as keyof typeof events]?.();
 
       mediaElementEventsNeutron.emit({

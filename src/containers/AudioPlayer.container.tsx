@@ -8,9 +8,12 @@ import { useMediaPlayerEvents } from '../hooks/useMediaPlayerEvents.hook';
 import { VolumeSliderContainer } from './VolumeSlider.container';
 import { StationButtonsContainer } from './StationButtons.container';
 import { AudioPlayer } from '../components/AudioPlayer.view';
-import { stationSelection } from '../signals/stationSelection.signal';
+import { StationSelection, stationSelection } from '../signals/stationSelection.signal';
 import { useLoadPersistSelectedRadioStation } from '../hooks/useLoadPersistSelectedRadioStation';
 import { RadioStationId } from '../types/station.types';
+import { mediaElementStatus } from '../signals/mediaElementStatus.signal';
+
+let currentStationSelection = {} as unknown as StationSelection;
 
 /*
  * AudioPlayerContainer
@@ -24,15 +27,24 @@ export const AudioPlayerContainer: React.FC = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const station = useLoadPersistSelectedRadioStation(stations);
   const [selectedStation, setSelectedStation] = useState<RadioStationId>(station.id);
-  const { isPlaying, isLoading } = useMediaPlayerEvents(audioRef);
 
-  const handlePlayPause = () => {
+  useMediaPlayerEvents(audioRef);
+
+  const handlePlayPause = async () => {
     if (audioRef.current) {
-      if (isPlaying) {
+      if (
+        currentStationSelection?.next === currentStationSelection.prev &&
+        !audioRef.current.paused
+      ) {
         audioRef.current.pause();
-      } else {
         audioRef.current.load();
-        audioRef.current.play();
+      } else {
+        const ctx = new AudioContext();
+        await ctx.resume();
+
+        audioRef.current.muted = true;
+        await audioRef.current.play();
+        audioRef.current.muted = false;
       }
     }
   };
@@ -40,10 +52,17 @@ export const AudioPlayerContainer: React.FC = () => {
   useSpaceKey(handlePlayPause);
 
   useEffect(() => {
-    stationSelection.watch((selectedStationId) => {
-      if (selectedStationId) {
-        setSelectedStation(selectedStationId);
+    stationSelection.watch((stationSelectionArgs) => {
+      if (stationSelectionArgs) {
+        currentStationSelection = stationSelectionArgs;
+        setSelectedStation(stationSelectionArgs.next);
       }
+    });
+  }, []);
+
+  useEffect(() => {
+    mediaElementStatus.watch((log) => {
+      // console.log('🚀 ~ AudioPlayerContainer ~ log:', log);
     });
   }, []);
 
