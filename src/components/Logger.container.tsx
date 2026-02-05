@@ -1,7 +1,10 @@
 import React, { useEffect, useRef } from 'react';
-import { Logger } from './Logger.view';
-import { LogEntry, Logs } from '../types/logs.types';
+
 import { mediaElementEventsNeutron } from '../signals/mediaElementEvents.signal';
+
+import { Logger } from './Logger.view';
+
+import type { LogEntry, Logs } from '../types/logs.types';
 
 export const LoggerContainer: React.FC = () => {
   const [logs, setLogs] = React.useState<Logs>([]);

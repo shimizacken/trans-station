@@ -1,4 +1,4 @@
-import { RadioStations } from '../types/station.types';
+import type { RadioStations } from '../types/station.types';
 
 export const stations: RadioStations = {
   'kan-bet': {

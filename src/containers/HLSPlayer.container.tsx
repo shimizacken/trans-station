@@ -1,21 +1,34 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Silver } from 'react-dial-knob';
+
 import { stations } from '../constants/radioStations';
-import { useMediaPlayerEvents } from '../hooks/useMediaPlayerEvents.hook';
-import { StationButtonsContainer } from './StationButtons.container';
-import { mediaElementEventsNeutron } from '../signals/mediaElementEvents.signal';
-import { useLoadPersistSelectedRadioStation } from '../hooks/useLoadPersistSelectedRadioStation';
+
 import { useHls } from '../hooks/useHls.hook';
-import { RadioStationId } from '../types/station.types';
+import { useMediaPlayerEvents } from '../hooks/useMediaPlayerEvents.hook';
+import { useLoadPersistSelectedRadioStation } from '../hooks/useLoadPersistSelectedRadioStation';
+
+import { stationSelection } from '../signals/stationSelection.signal';
+import { mediaElementEventsNeutron } from '../signals/mediaElementEvents.signal';
+
+import { Silver } from 'react-dial-knob';
+
+import { StationButtonsContainer } from './StationButtons.container';
+
+import type { RadioStationId } from '../types/station.types';
+import type { StationSelection } from '../signals/stationSelection.signal';
+
+let currentStationSelection = {} as unknown as StationSelection;
 
 export const HLSPlayerContainer: React.FC = () => {
   const [isPaused, setIsPaused] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const { isPlaying, isLoading } = useMediaPlayerEvents(videoRef);
   const [volume, setVolume] = useState(0.8);
   const station = useLoadPersistSelectedRadioStation(stations);
   const [currentStation, setCurrentStation] = useState(station);
+  const [selectedStation, setSelectedStation] = useState<RadioStationId>(station.id);
+
   useHls(videoRef, currentStation, volume, isPaused);
+
+  useMediaPlayerEvents(videoRef);
 
   useEffect(() => {
     document.title = `${currentStation.name}`;
@@ -37,6 +50,17 @@ export const HLSPlayerContainer: React.FC = () => {
       localStorage.setItem('currentStation', JSON.stringify(stations[stationId].id));
     }
   };
+
+  useEffect(() => {
+    stationSelection.watch((stationSelectionArgs) => {
+      if (stationSelectionArgs) {
+        currentStationSelection = stationSelectionArgs;
+        setSelectedStation(stationSelectionArgs.next);
+
+        handlePlayPause(stationSelectionArgs.next);
+      }
+    });
+  }, []);
 
   const handleVolumeChange = (value: number) => {
     if (videoRef.current) {
@@ -60,7 +84,7 @@ export const HLSPlayerContainer: React.FC = () => {
 
   return (
     <div>
-      <StationButtonsContainer stations={stations} onClick={handlePlayPause} />
+      <StationButtonsContainer stations={stations} />
       <video ref={videoRef} id="video" width="640" height="360" playsInline controls></video>
       <div className="controls">
         <Silver

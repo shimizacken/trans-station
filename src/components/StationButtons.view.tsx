@@ -1,6 +1,8 @@
 import React from 'react';
-import { RadioStations } from '../types/station.types';
+
 import { RadioStationButton } from './RadioStationButton.view';
+
+import type { RadioStations } from '../types/station.types';
 
 export const StationButtons: React.FC<{
   stations: RadioStations;

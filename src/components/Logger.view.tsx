@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react';
-import { Logs } from '../types/logs.types';
+
+import type { Logs } from '../types/logs.types';
 
 export const Logger = forwardRef<HTMLDivElement, { logs: Logs }>(({ logs }, ref) => (
   <div className="logger">

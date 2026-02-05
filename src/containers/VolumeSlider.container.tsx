@@ -1,6 +1,8 @@
 import React, { useState, forwardRef, useEffect } from 'react';
-import { Silver } from 'react-dial-knob';
+
 import { mediaElementEventsNeutron } from '../signals/mediaElementEvents.signal';
+
+import { Silver } from 'react-dial-knob';
 
 type RadioWithVolumeProps = {
   className?: string;

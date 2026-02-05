@@ -1,4 +1,4 @@
-import { RadioStationId, RadioStations } from '../types/station.types';
+import type { RadioStationId, RadioStations } from '../types/station.types';
 
 export const useLoadPersistSelectedRadioStation = (radioStations: RadioStations) => {
   const loadCurrentStation = localStorage.getItem('currentStation');

@@ -1,4 +1,5 @@
 import { createNeutron } from 'neutron';
-import { MediaElementStatus } from '../types/station.types';
+
+import type { MediaElementStatus } from '../types/station.types';
 
 export const mediaElementStatus = createNeutron<MediaElementStatus>();
